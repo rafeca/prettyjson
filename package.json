@@ -1,0 +1,25 @@
+{
+  "author": "Rafael de Oleza <rafeca@gmail.com> (https://github.com/rafeca)",
+  "name": "prettyjson",
+  "description": "Package for formatting JSON data in a coloured YAML-style, perfect for CLI output",
+  "version": "0.0.1",
+  "homepage": "https://github.com/rafeca/prettyjson",
+  "keywords": ["json", "cli", "formatting", "colors"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafeca/prettyjson.git"
+  },
+  "main": "./lib/prettyjson",
+  "scripts": {
+    "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
+  },
+  "engines": {
+    "node": "~v0.4.5"
+  },
+  "dependencies": {
+    "colors": "0.5.x"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.0.x"
+  }
+}
