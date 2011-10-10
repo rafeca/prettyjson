@@ -14,7 +14,7 @@
     "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
   },
   "engines": {
-    "node": "~v0.4.5"
+    "node": "~0.4.5"
   },
   "dependencies": {
     "colors": "0.5.x"
