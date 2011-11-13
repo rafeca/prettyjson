@@ -109,7 +109,7 @@ namespace('release', function() {
     
     console.log('Updating History.md file with git commit messages...');
     
-    exec('git log `git tag | head -1`..HEAD --pretty=format:"  * %s"', function(err, stdout, stderr) {
+    exec('git log `git tag | tail -1`..HEAD --pretty=format:"  * %s"', function(err, stdout, stderr) {
       
       var changelog = ('\n' + stdout + '\n').split('\n');
       
