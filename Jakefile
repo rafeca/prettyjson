@@ -18,7 +18,7 @@ task("examples",function() {
 }, true);
 
 desc("create docs");
-task("docs",function() {
+task("docs", ["examples"], function() {
   var command = '(markdown README.md && markdown History.md) | cat docs/_header.html - docs/_footer.html > docs/index.html';
   
   console.log('\nCreating index page based on README.md...'.yellow);
@@ -30,6 +30,7 @@ task("docs",function() {
     if (err !== null) {
       process.stderr.write('exec error: ' + err);
     }
+    console.log('Done!');
     complete();
   });
 }, true);
@@ -60,7 +61,7 @@ namespace('release', function() {
   var version;
   
   desc('Bump version in package.json');
-  task('version', function(releaseType) {
+  task('version', ['test'], function(releaseType) {
     RELEASE_TYPES = [
       'major',
       'minor',
@@ -131,8 +132,7 @@ namespace('release', function() {
   }, true);
   
   desc('Bumps the version and creates the tag in git');
-  task('git', ['default'] ,function(releaseType) {    
-    
+  task('git', ['test', 'docs'] ,function() {
     exec('git status package.json --porcelain', function(err, stdout, stderr) {
       if (!stdout) {
         fail("You have to run 'jake release:changelog' first!");
@@ -140,7 +140,7 @@ namespace('release', function() {
       
       version = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8')).version;
       
-      console.log('Creating version tag in git...');
+      console.log('Creating version tag ' + version + ' in git...');
       exec('git commit -a -m "Bump version to ' + version + '"', function(err, stdout, stderr) {
         if (err) {
           fail('Error while making git commit: ' + err);
@@ -158,7 +158,7 @@ namespace('release', function() {
   }, true);
   
   desc('Merge the master branch into the gh-pages branch');
-  task('gh-pages', ['release:git'] ,function(releaseType) {    
+  task('gh-pages', ['release:git'] ,function() {    
     
     console.log('Merging changes into gh-pages branch...');
     exec('git checkout gh-pages', function(err, stdout, stderr) {
@@ -180,7 +180,7 @@ namespace('release', function() {
   }, true);
   
   desc('Push code to GitHub and publishes the NPM package');
-  task('publish', ['release:gh-pages'] ,function(releaseType) {
+  task('publish', ['release:gh-pages'] ,function() {
     console.log('Pushing changes to GitHub and publishing NPM package...');
     exec('git push --all', function(err, stdout, stderr) {
       if (err) {
@@ -200,4 +200,4 @@ namespace('release', function() {
 
 
 desc('build the complete package');
-task('default', ['test', 'examples', 'docs'], function(){}, true);
+task('default', ['test', 'docs'], function(){}, true);
