@@ -59,7 +59,7 @@ task("test",function() {
 namespace('release', function() { 
   var version;
   
-  desc('Modify package.json');
+  desc('Bump version in package.json');
   task('version', function(releaseType) {
     RELEASE_TYPES = [
       'major',
@@ -72,20 +72,17 @@ namespace('release', function() {
       if (stdout) {
         fail('There are local changes in your git repository, please commit them');
       }
-      
-      var jsonData = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8'));
 
       var releaseIndex = RELEASE_TYPES.indexOf(releaseType);
-
       if (releaseIndex === -1) {
         releaseIndex = 2;
       }
 
+      var jsonData = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8'));
       version = jsonData.version.split('.');
       version[releaseIndex]++;
       version = version.join('.');
 
-      // Bump version in package.json
       console.log('Upgrading version in package.json to ' + version + ' ...');
 
       jsonData.version = version;
@@ -94,6 +91,7 @@ namespace('release', function() {
         JSON.stringify(jsonData, null, 2),
         'utf8'
       );
+      console.log('Done!');
       complete();
     });
   }, true);
@@ -107,6 +105,8 @@ namespace('release', function() {
     ];
     var d = new Date();
     var header = '### ' + version + ' — *' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + '*';
+    
+    console.log('Updating History.md file with git commit messages...');
     
     exec('git log `git tag | head -1`..HEAD --pretty=format:"  * %s"', function(err, stdout, stderr) {
       
@@ -124,29 +124,43 @@ namespace('release', function() {
 
       // Write contents to `History.md` file again
       fs.writeFileSync('History.md', finalHistory.join('\n'), 'utf8');
-
+      
+      console.log('Done!');
       complete();
     });
   }, true);
   
   desc('Bumps the version and creates the tag in git');
   task('git', ['default'] ,function(releaseType) {    
-    exec('git commit -a -m "Bump version to ' + version + '"', function(err, stdout, stderr) {
-      if (err) {
-        fail('Error while making git commit: ' + err);
+    
+    exec('git status package.json --porcelain', function(err, stdout, stderr) {
+      if (!stdout) {
+        fail("You have to run 'jake release:changelog' first!");
       }
       
-      exec('git tag ' + version, function(err, stdout, stderr) {
+      version = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8')).version;
+      
+      console.log('Creating version tag in git...');
+      exec('git commit -a -m "Bump version to ' + version + '"', function(err, stdout, stderr) {
         if (err) {
-          fail('Error while creating the tag in git: ' + err);
+          fail('Error while making git commit: ' + err);
         }
-        complete();
-      })
+      
+        exec('git tag ' + version, function(err, stdout, stderr) {
+          if (err) {
+            fail('Error while creating the tag in git: ' + err);
+          }
+          console.log('Done!');
+          complete();
+        })
+      });
     });
   }, true);
   
   desc('Merge the master branch into the gh-pages branch');
   task('gh-pages', ['release:git'] ,function(releaseType) {    
+    
+    console.log('Merging changes into gh-pages branch...');
     exec('git checkout gh-pages', function(err, stdout, stderr) {
       if (err) {
         fail('Error while checking out in the gh-pages branch: ' + err);
@@ -158,6 +172,7 @@ namespace('release', function() {
         }
         
         exec('git checkout master', function(err, stdout, stderr) {
+          console.log('Done!');
           complete();
         });
       })
@@ -166,6 +181,7 @@ namespace('release', function() {
   
   desc('Push code to GitHub and publishes the NPM package');
   task('publish', ['release:gh-pages'] ,function(releaseType) {
+    console.log('Pushing changes to GitHub and publishing NPM package...');
     exec('git push --all', function(err, stdout, stderr) {
       if (err) {
         fail('Error while pushing the code to GitHub repository: ' + err);
@@ -175,6 +191,7 @@ namespace('release', function() {
         if (err) {
           fail('Error while publishing the package to NPM repository: ' + err);
         }
+        console.log('Done!');
         complete();
       })
     });
