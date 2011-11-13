@@ -56,59 +56,144 @@ task("test",function(){
   });
 }, true);
 
+namespace('release', function(){
+  var version;
+  
+  desc('Modify package.json');
+  task('version', function(releaseType){
+    RELEASE_TYPES = [
+      'major',
+      'minor',
+      'patch'
+    ];
 
-desc("Modify changelog with last commits");
-task("changelog", function(version){
+    var jsonData = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8'));
 
-  exec('git changelog --list', function(err, stdout, stderr) {
-    if (stdout.split("\n").length === 0) {
-      fail('No commits since last release');
+    var releaseIndex = RELEASE_TYPES.indexOf(releaseType);
+
+    if (releaseIndex === -1) {
+      releaseIndex = 2;
     }
-    
+
+    version = jsonData.version.split('.');
+    version[releaseIndex]++;
+    version = version.join('.');
+
     // Bump version in package.json
-    console.log('Upgrading version in package.json ...');
-    var data = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8'));
-    
-    if (!version) {
-      version = data.version.split('.');
-      version[2]++;
-      version = version.join('.');
-    }
-    data.version = version;
+    console.log('Upgrading version in package.json to ' + version + ' ...');
+
+    jsonData.version = version;
     fs.writeFileSync(
       path.join(__dirname, "package.json"),
-      JSON.stringify(data, null, 2),
+      JSON.stringify(jsonData, null, 2),
       'utf8'
     );
     
-    var monthNames = [
-      "January", "February", "March",
-      "April", "May", "June",
-      "July", "August", "September",
-      "October", "November", "December"
+    return version;
+  });
+  
+  desc('Modify changelog with last commits');
+  task('changelog', function(releaseType){
+
+    // Execute release:version task
+    var t = jake.Task['release:version'];
+    t.invoke.apply(t, arguments);   
+    
+    var months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
     ];
     var d = new Date();
-    var currentHistory = [
-      '### ' + version + ' — *' + monthNames[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + '*',
-      ''
-    ].concat(stdout.split('\n'), ['']);
-  
-    // Read History.md
-    console.log('Adding commit messages to History.md...');
-    var history = fs.readFileSync('History.md', 'utf8').split('\n');
-  
-    // Add contents of `git changelog` after the title
-    var args = [2, 0].concat(currentHistory);
-  
-    history.splice.apply(history, args);
-  
-    // Write contents to `History.md` file again
-    fs.writeFileSync('History.md', history.join('\n'), 'utf8');
+    var header = '### ' + version + ' — *' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + '*';
     
-    // Invoke the default task (to rebuild documentation & stuff)
-    jake.Task['default'].invoke();
-  });
-}, true);
+    exec('git log `git tag | head -1`..HEAD --pretty=format:"  * %s"', function(err, stdout, stderr) {
+      
+      var changelog = ('\n' + stdout + '\n').split('\n');
+      
+      if (err) {
+        fail("Error while getting the git commits: " + err);
+      }
+
+      // Read History.md
+      var history = fs.readFileSync('History.md', 'utf8').split('\n');
+
+      // Add contents of `git changelog` after the title
+      var finalHistory = history.splice(0, 2).concat(header).concat(changelog).concat(history);
+
+      // Write contents to `History.md` file again
+      fs.writeFileSync('History.md', finalHistory.join('\n'), 'utf8');
+
+      // Invoke the default task (to rebuild documentation & stuff)
+      jake.Task['default'].invoke();
+
+      complete();
+    });
+  }, true);
+  
+  desc('Bumps the version and creates the tag in git');
+  task('git', function(releaseType){
+    // Execute release:changelog task
+    var t = jake.Task['release:changelog'];
+    t.invoke.apply(t, arguments);
+    
+    exec('git commit -a -m "Bump version to ' + version + '"', function(err, stdout, stderr) {
+      if (err) {
+        fail('Error while making git commit: ' + err);
+      }
+      
+      exec('git tag ' + version, function(err, stdout, stderr) {
+        if (err) {
+          fail('Error while creating the tag in git: ' + err);
+        }
+        complete();
+      })
+    });
+  }, true);
+  
+  desc('Merge the master branch into the gh-pages branch');
+  task('gh-pages', function(releaseType){
+    // Execute release:git task
+    var t = jake.Task['release:git'];
+    t.invoke.apply(t, arguments);
+    
+    exec('git checkout gh-pages', function(err, stdout, stderr) {
+      if (err) {
+        fail('Error while checking out in the gh-pages branch: ' + err);
+      }
+      
+      exec('git merge -s recursive -Xsubtree master', function(err, stdout, stderr) {
+        if (err) {
+          fail('Error while merging master changes into gh-pages branch: ' + err);
+        }
+        
+        exec('git checkout master', function(err, stdout, stderr) {
+          complete();
+        });
+      })
+    });
+  }, true);
+  
+  desc('Push code to GitHub and publishes the NPM package');
+  task('publish', function(releaseType){
+    // Execute release:git task
+    var t = jake.Task['release:gh-pages'];
+    t.invoke.apply(t, arguments);
+    
+    exec('git push --all', function(err, stdout, stderr) {
+      if (err) {
+        fail('Error while pushing the code to GitHub repository: ' + err);
+      }
+      
+      exec('npm publish', function(err, stdout, stderr) {
+        if (err) {
+          fail('Error while publishing the package to NPM repository: ' + err);
+        }
+        complete();
+      })
+    });
+  }, true);
+});
+
 
 desc('build the complete package');
 task('default', ['test', 'examples', 'docs'], function(){}, true);
