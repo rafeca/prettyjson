@@ -4,10 +4,10 @@ var fs = require('fs');
 var path = require('path');
   
 desc("create examples");
-task("examples",function(){
+task("examples",function() {
   console.log('\ncreating examples documentation...'.yellow);
   
-  exec('docco lib/prettyjson.js', function(err, stdout, stderr){
+  exec('docco lib/prettyjson.js', function(err, stdout, stderr) {
     process.stdout.write(stdout);          
     process.stderr.write(stderr);
     if (err !== null) {
@@ -18,13 +18,13 @@ task("examples",function(){
 }, true);
 
 desc("create docs");
-task("docs",function(){
+task("docs",function() {
   var command = '(markdown README.md && markdown History.md) | cat docs/_header.html - docs/_footer.html > docs/index.html';
   
   console.log('\nCreating index page based on README.md...'.yellow);
    
   console.log('executing command "' + command + '"');
-  exec(command, function(err, stdout, stderr){
+  exec(command, function(err, stdout, stderr) {
     process.stdout.write(stdout);          
     process.stderr.write(stderr);
     if (err !== null) {
@@ -35,16 +35,16 @@ task("docs",function(){
 }, true);
 
 desc("execute tests");
-task("test",function(){
+task("test",function() {
   var spawn = require('child_process').spawn;
   var child = spawn('npm', ['test']);
   
   console.log('\nexecuting the tests...'.yellow);
   
-  child.stderr.on('data', function(stderr){
+  child.stderr.on('data', function(stderr) {
     process.stderr.write(stderr);
   });
-  child.stdout.on('data', function(stdout){
+  child.stdout.on('data', function(stdout) {
     process.stdout.write(stdout);
   });
   child.on('exit', function(code) {
@@ -56,49 +56,51 @@ task("test",function(){
   });
 }, true);
 
-namespace('release', function(){
+namespace('release', function() { 
   var version;
   
   desc('Modify package.json');
-  task('version', function(releaseType){
+  task('version', function(releaseType) {
     RELEASE_TYPES = [
       'major',
       'minor',
       'patch'
     ];
-
-    var jsonData = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8'));
-
-    var releaseIndex = RELEASE_TYPES.indexOf(releaseType);
-
-    if (releaseIndex === -1) {
-      releaseIndex = 2;
-    }
-
-    version = jsonData.version.split('.');
-    version[releaseIndex]++;
-    version = version.join('.');
-
-    // Bump version in package.json
-    console.log('Upgrading version in package.json to ' + version + ' ...');
-
-    jsonData.version = version;
-    fs.writeFileSync(
-      path.join(__dirname, "package.json"),
-      JSON.stringify(jsonData, null, 2),
-      'utf8'
-    );
     
-    return version;
-  });
+    // Check if the working copy is not clean
+    exec('git status --porcelain', function(err, stdout, stderr) {
+      if (stdout) {
+        fail('There are local changes in your git repository, please commit them');
+      }
+      
+      var jsonData = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), 'utf8'));
+
+      var releaseIndex = RELEASE_TYPES.indexOf(releaseType);
+
+      if (releaseIndex === -1) {
+        releaseIndex = 2;
+      }
+
+      version = jsonData.version.split('.');
+      version[releaseIndex]++;
+      version = version.join('.');
+
+      // Bump version in package.json
+      console.log('Upgrading version in package.json to ' + version + ' ...');
+
+      jsonData.version = version;
+      fs.writeFileSync(
+        path.join(__dirname, "package.json"),
+        JSON.stringify(jsonData, null, 2),
+        'utf8'
+      );
+      complete();
+    });
+  }, true);
   
   desc('Modify changelog with last commits');
-  task('changelog', function(releaseType){
+  task('changelog', ['release:version'], function(releaseType) {
 
-    // Execute release:version task
-    var t = jake.Task['release:version'];
-    t.invoke.apply(t, arguments);   
-    
     var months = [
       "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
@@ -123,19 +125,12 @@ namespace('release', function(){
       // Write contents to `History.md` file again
       fs.writeFileSync('History.md', finalHistory.join('\n'), 'utf8');
 
-      // Invoke the default task (to rebuild documentation & stuff)
-      jake.Task['default'].invoke();
-
       complete();
     });
   }, true);
   
   desc('Bumps the version and creates the tag in git');
-  task('git', function(releaseType){
-    // Execute release:changelog task
-    var t = jake.Task['release:changelog'];
-    t.invoke.apply(t, arguments);
-    
+  task('git', ['default'] ,function(releaseType) {    
     exec('git commit -a -m "Bump version to ' + version + '"', function(err, stdout, stderr) {
       if (err) {
         fail('Error while making git commit: ' + err);
@@ -151,11 +146,7 @@ namespace('release', function(){
   }, true);
   
   desc('Merge the master branch into the gh-pages branch');
-  task('gh-pages', function(releaseType){
-    // Execute release:git task
-    var t = jake.Task['release:git'];
-    t.invoke.apply(t, arguments);
-    
+  task('gh-pages', ['release:git'] ,function(releaseType) {    
     exec('git checkout gh-pages', function(err, stdout, stderr) {
       if (err) {
         fail('Error while checking out in the gh-pages branch: ' + err);
@@ -174,11 +165,7 @@ namespace('release', function(){
   }, true);
   
   desc('Push code to GitHub and publishes the NPM package');
-  task('publish', function(releaseType){
-    // Execute release:git task
-    var t = jake.Task['release:gh-pages'];
-    t.invoke.apply(t, arguments);
-    
+  task('publish', ['release:gh-pages'] ,function(releaseType) {
     exec('git push --all', function(err, stdout, stderr) {
       if (err) {
         fail('Error while pushing the code to GitHub repository: ' + err);
