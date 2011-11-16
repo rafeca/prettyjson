@@ -32,7 +32,7 @@ It's pretty easy to use it... you just have to include it in your script and cal
 
 And will output:
     
-![Example 1](http://rafeca.github.com/prettyjson/images/example1.png)
+![Example 1](http://rafeca.com/prettyjson/images/example1.png)
 
 You can also configure the colors of the hash keys and array dashes
 (using [colors.js](https://github.com/Marak/colors.js) colors syntax):
@@ -53,11 +53,11 @@ You can also configure the colors of the hash keys and array dashes
 
 Will output something like:
 
-![Example 2](http://rafeca.github.com/prettyjson/images/example2.png)
+![Example 2](http://rafeca.com/prettyjson/images/example2.png)
 
 ## Annotated source
 
-You can check the [annotated source](http://rafeca.github.com/prettyjson/prettyjson.html) for more information about how it works
+You can check the [annotated source](http://rafeca.com/prettyjson/prettyjson.html) for more information about how it works
 
 ## Running Tests
 
