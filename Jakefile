@@ -182,7 +182,7 @@ namespace('release', function() {
   desc('Push code to GitHub and publishes the NPM package');
   task('publish', ['release:gh-pages'] ,function() {
     console.log('Pushing changes to GitHub and publishing NPM package...');
-    exec('git push --all', function(err, stdout, stderr) {
+    exec('git push origin master gh-pages --tags', function(err, stdout, stderr) {
       if (err) {
         fail('Error while pushing the code to GitHub repository: ' + err);
       }
