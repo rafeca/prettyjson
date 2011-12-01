@@ -72,8 +72,8 @@ then run the tests:
 
 ## Contributors
 
-* Rafael de Oleza &lt;rafeca at gmail dot com&gt;
-* Francisco Perez Lopez &lt;francis at tid dot es&gt;
+* Rafael de Oleza &lt; rafeca at gmail dot com &gt;
+* Francisco Perez Lopez &lt; francis at tid dot es &gt;
 
 ## License
 
