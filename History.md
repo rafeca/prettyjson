@@ -1,5 +1,9 @@
 ## Change Log
 
+### 0.1.4 — *December 1, 2011*
+
+  * Added contributors to the Readme file
+
 ### 0.1.3 — *November 17, 2011*
 
   * Fixed the GitHub publishing of tags in the jake task
