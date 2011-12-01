@@ -69,6 +69,12 @@ then run the tests:
     
     $ npm test
 
+
+## Contributors
+
+* Rafael de Oleza &lt;rafeca at gmail dot com&gt;
+* Francisco Perez Lopez &lt;francis at tid dot es&gt;
+
 ## License
 
 (The MIT License)
