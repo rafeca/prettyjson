@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>prettyjson - Node.js package for formatting JSON data in a coloured YAML-style, perfect for CLI output</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" media="all" href="docco.css" />
+    <link rel="stylesheet" media="all" href="stylesheets/sh_style.css" />
+    <link rel="stylesheet" media="all" href="stylesheets/main.css" />
+    
+    <script type="text/javascript" src="javascripts/sh_main.min.js"></script>
+    <script type="text/javascript" src="javascripts/sh_javascript.min.js"></script>
+  </head>
+  
+  <body>
+    
+    <a class="forkme" href="http://github.com/rafeca/prettyjson">
+      <img  src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub">
+    </a>
+    
+    <div id="container">
+
+      <h1>prettyjson <a href="http://travis-ci.org/rafeca/prettyjson"><img src="https://secure.travis-ci.org/rafeca/prettyjson.png" alt="Build Status">
+</a></h1>
+
+<p>Package for formatting JSON data in a coloured YAML-style, perfect for CLI output</p>
+
+<h2>How to install</h2>
+
+<p>The easiest way is by installing it from the <code>npm</code> repository:</p>
+
+<pre><code>$ npm install prettyjson
+</code></pre>
+
+<p>If you'd prefer to install the latest master version of <code>prettyjson</code>, you can clone the GitHub source repository
+and then install it using <code>npm</code>:</p>
+
+<pre><code>$ git clone &quot;https://github.com/rafeca/prettyjson.git&quot;
+
+$ npm install prettyjson/
+</code></pre>
+
+<h2>How to use it</h2>
+
+<p>It's pretty easy to use it... you just have to include it in your script and call the <code>render()</code> method:</p>
+
+<pre><code>var prettyjson = require('prettyjson');
+
+var data = {
+  username: 'rafeca',
+  url: 'https://github.com/rafeca',
+  twitter_account: 'https://twitter.com/rafeca',
+  projects: ['prettyprint', 'connfu']
+};
+
+console.log(prettyjson.render(data));
+</code></pre>
+
+<p>And will output:</p>
+
+<p><img src="http://rafeca.com/prettyjson/images/example1.png" alt="Example 1">
+</p>
+
+<p>You can also configure the colors of the hash keys and array dashes
+(using <a href="https://github.com/Marak/colors.js">colors.js</a> colors syntax):</p>
+
+<pre><code>var prettyjson = require('prettyjson');
+
+var data = {
+  username: 'rafeca',
+  url: 'https://github.com/rafeca',
+  twitter_account: 'https://twitter.com/rafeca',
+  projects: ['prettyprint', 'connfu']
+};
+
+console.log(prettyjson.render(data, {
+  keysColor: 'rainbow', 
+  dashColor: 'magenta'
+}));
+</code></pre>
+
+<p>Will output something like:</p>
+
+<p><img src="http://rafeca.com/prettyjson/images/example2.png" alt="Example 2">
+</p>
+
+<h2>Annotated source</h2>
+
+<p>You can check the <a href="http://rafeca.com/prettyjson/prettyjson.html">annotated source</a> for more information about how it works</p>
+
+<h2>Running Tests</h2>
+
+<p>To run the test suite first invoke the following command within the repo, installing the development dependencies:</p>
+
+<pre><code>$ npm install --dev
+</code></pre>
+
+<p>then run the tests:</p>
+
+<pre><code>$ npm test
+</code></pre>
+%
+
+      <h2>Change Log</h2>
+      
+      <h3>0.2.0 — <em>January 22, 2012</em></h3>
+
+<ul>
+<li>Now using node-releasetools for the release process</li>
+<li>Disabled Node.js 0.6 from Travis CI temporally</li>
+<li>Minor copy in Readme.md</li>
+</ul>
+
+<h3>0.1.4 — <em>December 1, 2011</em></h3>
+
+<ul>
+<li>Added contributors to the Readme file</li>
+</ul>
+
+<h3>0.1.3 — <em>November 17, 2011</em></h3>
+
+<ul>
+<li>Fixed the GitHub publishing of tags in the jake task</li>
+<li>Updated package.json to make it compatible with Node.js 0.6.x</li>
+<li>Updated travis YAML file to use the new Node.js support on Travis</li>
+</ul>
+
+<h3>0.1.2 — <em>November 14, 2011</em></h3>
+
+<ul>
+<li>Updated Jakefile with tasks to automate publishing new versions</li>
+</ul>
+
+<h3>0.1.1 — <em>October 11, 2011</em></h3>
+
+<ul>
+<li>Added changelog jake task to add changelog automatically</li>
+<li>The library version is retrieved from <code>package.json</code> file</li>
+</ul>
+
+<h3>0.1.0 — <em>October 10, 2011</em></h3>
+
+<ul>
+<li>Initial release</li>
+</ul>
+
+            
+      <h2>Contributors</h2>
+      
+      <p>Rafael de Oleza <a href="mailto:rafeca@gmail.com">rafeca@gmail.com</a></p>
+
+      
+      <h2>License</h2>
+      
+      <p>(The MIT License)</p>
+
+<p>Copyright (c) 2011 Rafael de Oleza <a href="mailto:rafeca@gmail.com">rafeca@gmail.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+
+    </div>
+    
+    <script type="text/javascript">sh_highlightDocument();</script>
+  </body>
+</html>

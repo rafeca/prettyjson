@@ -1,3 +1,9 @@
+### 0.2.0 — *January 22, 2012*
+
+  * Now using node-releasetools for the release process
+  * Disabled Node.js 0.6 from Travis CI temporally
+  * Minor copy in Readme.md
+
 ### 0.1.4 — *December 1, 2011*
 
   * Added contributors to the Readme file
