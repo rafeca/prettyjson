@@ -25,6 +25,8 @@
     "colors": "0.5.x"
   },
   "devDependencies": {
-    "jasmine-node": "1.0.x"
+    "jasmine-node": "1.0.x",
+    "releasetools": "0.1.x",
+    "step": "0.0.x"
   }
 }

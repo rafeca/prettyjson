@@ -1,5 +1,3 @@
-## Change Log
-
 ### 0.1.4 — *December 1, 2011*
 
   * Added contributors to the Readme file
