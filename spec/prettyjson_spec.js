@@ -1,6 +1,6 @@
 var prettyjson = require('../lib/prettyjson');
 
-describe('prettyjson tests', function(){
+describe('prettyjson general tests', function(){
 
   it("should output a string exactly equal as the input", function(){
     
@@ -153,5 +153,33 @@ describe('prettyjson tests', function(){
       '(empty)'
     ].join('\n'));
   });
-  
+});
+
+
+describe('Printing numbers, booleans and other objects', function(){
+  it("should print numbers correctly ", function(){
+    var input = 12345;
+    var output = prettyjson.render(input, {}, 4);
+
+    expect(output).toEqual('    ' + '12345'.blue);
+  });
+
+  it("should print booleans correctly ", function(){
+    var input = true;
+    var output = prettyjson.render(input, {}, 4);
+
+    expect(output).toEqual('    ' + 'true'.green);
+
+    input = false;
+    output = prettyjson.render(input, {}, 4);
+
+    expect(output).toEqual('    ' + 'false'.red);
+  });
+
+  it("should print a null object correctly ", function(){
+    var input = null;
+    var output = prettyjson.render(input, {}, 4);
+
+    expect(output).toEqual('    ' + 'null'.grey);
+  });
 });
