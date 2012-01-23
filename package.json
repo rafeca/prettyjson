@@ -18,6 +18,9 @@
   "scripts": {
     "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
   },
+  "bin": {
+    "prettyjson": "./bin/prettyjson"
+  },
   "engines": {
     "node": ">= 0.6.0 < 0.7.0"
   },

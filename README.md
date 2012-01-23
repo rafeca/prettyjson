@@ -8,14 +8,33 @@ The easiest way is by installing it from the `npm` repository:
     
     $ npm install prettyjson
 
-If you'd prefer to install the latest master version of `prettyjson`, you can clone the GitHub source repository
-and then install it using `npm`:
-    
-    $ git clone "https://github.com/rafeca/prettyjson.git"
-    
-    $ npm install prettyjson/
+## Using it (from the CLI)
 
-## How to use it
+This package installs a command line interface to render JSON data in a more convenient way. You can use the CLI
+in three different ways:
+
+**Decode a JSON file:** If you want to see the contents of a JSON file, just pass it as the first argument to the CLI:
+    
+    $ prettyjson package.json
+
+![Example 1](http://rafeca.com/prettyjson/images/example3.png)
+
+**Decode the stdin:** You can also pipe the result of a command (for example an HTTP request) to the CLI to see
+the JSON result in a clearer way:
+    
+    $ curl https://api.github.com/users/rafeca | prettyjson
+
+![Example 2](http://rafeca.com/prettyjson/images/example4.png)
+
+**Decode random strings:** if you call the CLI with no arguments, you'll get a prompt where you can past JSON strings
+and they'll be automatically displayed in a clearer way:
+
+![Example 3](http://rafeca.com/prettyjson/images/example5.png)
+
+If you install the package globally (with `npm install -g prettyjson`), the CLI will be installed automatically in your PATH
+thanks to npm.
+
+## Using it (from Node.js)
 
 It's pretty easy to use it... you just have to include it in your script and call the `render()` method:
     
@@ -32,7 +51,7 @@ It's pretty easy to use it... you just have to include it in your script and cal
 
 And will output:
     
-![Example 1](http://rafeca.com/prettyjson/images/example1.png)
+![Example 4](http://rafeca.com/prettyjson/images/example1.png)
 
 You can also configure the colors of the hash keys and array dashes
 (using [colors.js](https://github.com/Marak/colors.js) colors syntax):
@@ -53,7 +72,7 @@ You can also configure the colors of the hash keys and array dashes
 
 Will output something like:
 
-![Example 2](http://rafeca.com/prettyjson/images/example2.png)
+![Example 5](http://rafeca.com/prettyjson/images/example2.png)
 
 ## Annotated source
 

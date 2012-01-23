@@ -4,6 +4,11 @@ var Step = require('step');
 releaseTools.setOptions({
   examplePaths: [
     'lib/prettyjson.js'
+  ],
+  siteAssetsPaths: [
+    'site/images',
+    'site/javascripts',
+    'site/stylesheets'
   ]
 });
 

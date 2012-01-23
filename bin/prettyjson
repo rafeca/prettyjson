@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+var prettyjson = require('../lib/prettyjson');
+var fs=require('fs');
+
+
+var renderInputJson = function(input){
+  if (input === '') {
+    return;
+  }
+  try {
+    var inputData = JSON.parse(input);
+    console.log(prettyjson.render(inputData));
+  } catch (e) {
+    console.log('Error:'.red + ' Not valid JSON!');
+  }
+};
+
+if (process.argv.length > 2) {
+  // First parameter is the file to read and parse
+  var param = process.argv[2];
+  try {
+    renderInputJson(fs.readFileSync(param));
+  } catch (e) {
+    console.log('Error: '.red + "File '" + param + "' does not exist");  
+  }
+} else {
+  // Read input stream
+
+  var streamData = '';
+
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+  process.stdin.on('data', function (chunk) {
+    if (chunk === '\n') {
+      renderInputJson(streamData);
+      streamData = '';
+      return; 
+    }
+    streamData += chunk;
+  });
+  process.stdin.on('end', function(){
+    renderInputJson(streamData);
+  });
+}
