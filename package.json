@@ -19,7 +19,7 @@
     "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
   },
   "engines": {
-    "node": ">= 0.4.1 < 0.7.0"
+    "node": ">= 0.6.0 < 0.7.0"
   },
   "dependencies": {
     "colors": "0.5.x"
