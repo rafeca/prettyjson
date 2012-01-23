@@ -1,3 +1,8 @@
+### 0.3.0 — *January 24, 2012*
+
+  * Added CLI interface
+  * Now prettyjson package requires Nodejs 0.6.x
+
 ### 0.2.1 — *January 23, 2012*
 
   * Fix: Bug when the JSON has attributes with booleans, integers or null values
