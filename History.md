@@ -1,3 +1,8 @@
+### 0.3.1 — *February 15, 2012*
+
+  * Modified website design
+  * Modify webpage link in package.json
+
 ### 0.3.0 — *January 24, 2012*
 
   * Added CLI interface
