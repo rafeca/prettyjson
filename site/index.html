@@ -10,6 +10,18 @@
     
     <script type="text/javascript" src="javascripts/sh_main.min.js"></script>
     <script type="text/javascript" src="javascripts/sh_javascript.min.js"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-6212472-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   
   <body>
@@ -34,6 +46,14 @@
       
       {{ LICENSE }}
 
+    </div>
+
+    <div id="footer">
+      <a href="http://rafeca.com"><span>Rafael de Oleza &mdash; rafeca</span></a>
+      <a class="fadedlink" href="https://github.com/rafeca"><img src="images/github-logo.png" alt="@github"></a>
+      <a class="fadedlink" href="https://twitter.com/rafeca"><img src="images/twitter-logo.png" alt="@twitter"></a>
+      <a class="fadedlink" href="http://linkedin.com/in/rafeca"><img src="images/linkedin-logo.png" alt="@linkedin"></a>
+      <a class="fadedlink" href="mailto:rafeca@gmail.com"><img src="images/gmail-logo.png" alt="@gmail"></a>
     </div>
     
     <script type="text/javascript">sh_highlightDocument();</script>

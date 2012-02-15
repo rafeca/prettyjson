@@ -1,5 +1,6 @@
 html {
   background-color: #fff;
+  color: #252525;
 }
 
 .forkme {
@@ -24,7 +25,7 @@ h1 a img {
   padding: 0 0 4px 15px;
 }
 
-#container {
+#container, #footer {
   width: 800px;
   margin: 0 auto;
 }
@@ -68,6 +69,8 @@ h1 {
 h2 {
   margin-top: 30px;
   border-bottom: 1px solid #999;
+  font-weight: normal;
+  font-size: 1.8em;
 }
 
 h3 em {
@@ -81,4 +84,36 @@ a, a:visited {
 
 a:hover {
   text-decoration: none;
+}
+
+#footer {
+  border-top: 1px solid #999;
+  margin-top: 30px;
+  padding: 10px 0;
+  color: #444;
+  line-height: 1.785em;
+  font-family: helvetica, arial, clean, sans-serif;
+  font-size: 0.875em;
+}
+
+#footer a {
+  margin: 0 3px;
+  color: #444;
+  text-decoration:none;
+  opacity: 0.6;
+  -webkit-transition-property: opacity, color;
+  -webkit-transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-out;
+     -moz-transition-property: opacity;
+     -moz-transition-duration: 0.2s;
+     -moz-transition-timing-function: ease-out;
+}
+
+#footer a:hover {
+  opacity: 1;
+  color: #000;
+}
+
+#footer span {
+  float: right;
 }
