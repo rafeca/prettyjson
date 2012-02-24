@@ -1,3 +1,8 @@
+### 0.4.0 — *February 24, 2012*
+
+  * Now prettyjson uses Mocha test framework instead of jasmine-node
+  * Fixed leak in a "key" variable
+
 ### 0.3.1 — *February 15, 2012*
 
   * Modified website design
