@@ -16,7 +16,7 @@
   },
   "main": "./lib/prettyjson",
   "scripts": {
-    "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "bin": {
     "prettyjson": "./bin/prettyjson"
@@ -28,8 +28,9 @@
     "colors": "0.5.x"
   },
   "devDependencies": {
-    "jasmine-node": "1.0.x",
     "releasetools": "0.1.x",
-    "step": "0.0.x"
+    "step": "0.0.x",
+    "mocha": "~0.12.0",
+    "should": "~0.5.1"
   }
 }

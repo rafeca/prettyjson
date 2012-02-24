@@ -1,4 +1,5 @@
 var prettyjson = require('../lib/prettyjson');
+var should = require('should');
 
 describe('prettyjson general tests', function(){
 
@@ -7,7 +8,7 @@ describe('prettyjson general tests', function(){
     var input = 'This is a string'
     var output = prettyjson.render(input);
 
-    expect(output).toEqual(input);
+    output.should.equal(input);
   });
 
   it("should output a string with indentation", function(){
@@ -15,7 +16,7 @@ describe('prettyjson general tests', function(){
     var input = 'This is a string'
     var output = prettyjson.render(input, {}, 4);
 
-    expect(output).toEqual('    ' + input);
+    output.should.equal('    ' + input);
   });
   
   it("should output an array of strings", function(){
@@ -23,7 +24,7 @@ describe('prettyjson general tests', function(){
     var input = ['first string', 'second string'];
     var output = prettyjson.render(input);
 
-    expect(output).toEqual([
+    output.should.equal([
       '- '.green + input[0],
       '- '.green + input[1]
     ].join('\n'));
@@ -34,7 +35,7 @@ describe('prettyjson general tests', function(){
     var input = ['first string', ['nested 1', 'nested 2'], 'second string'];
     var output = prettyjson.render(input);
 
-    expect(output).toEqual([
+    output.should.equal([
       '- '.green + input[0],
       '- '.green,
       '  ' + '- '.green + input[1][0],
@@ -48,7 +49,7 @@ describe('prettyjson general tests', function(){
     var input = {param1: 'first string', param2: 'second string'};
     var output = prettyjson.render(input);
 
-    expect(output).toEqual([
+    output.should.equal([
       'param1: '.green + 'first string',
       'param2: '.green + 'second string',
     ].join('\n'));
@@ -59,7 +60,7 @@ describe('prettyjson general tests', function(){
     var input = {first_param: {subparam: 'first string', subparam2: 'another string'}, second_param: 'second string'};
     var output = prettyjson.render(input);
 
-    expect(output).toEqual([
+    output.should.equal([
       'first_param: '.green,
       '  ' + 'subparam: '.green + ' first string',
       '  ' + 'subparam2: '.green + 'another string',
@@ -72,7 +73,7 @@ describe('prettyjson general tests', function(){
     var input = {very_large_param: 'first string', param: 'second string'};
     var output = prettyjson.render(input);
 
-    expect(output).toEqual([
+    output.should.equal([
       'very_large_param: '.green + 'first string',
       'param: '.green + '           second string',
     ].join('\n'));
@@ -96,7 +97,7 @@ describe('prettyjson general tests', function(){
     
     var output = prettyjson.render(input);
 
-    expect(output).toEqual([
+    output.should.equal([
       'first_param: '.green,
       '  ' + 'subparam: '.green + ' first string',
       '  ' + 'subparam2: '.green + 'another string',
@@ -118,7 +119,7 @@ describe('prettyjson general tests', function(){
     var input = {param1: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'blue'});
 
-    expect(output).toEqual([
+    output.should.equal([
       'param1: '.blue + 'first string',
       'param2: '.blue + 'second string',
     ].join('\n'));
@@ -128,7 +129,7 @@ describe('prettyjson general tests', function(){
     var input = {param_long: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'rainbow'});
 
-    expect(output).toEqual([
+    output.should.equal([
       'param_long: '.rainbow + 'first string',
       'param2: '.rainbow + '    second string',
     ].join('\n'));
@@ -138,7 +139,7 @@ describe('prettyjson general tests', function(){
     var input = {param: ['first string', "second string"]};
     var output = prettyjson.render(input, {defaultIndentation: 4});
 
-    expect(output).toEqual([
+    output.should.equal([
       'param: '.green,
       '    ' + '- '.green + 'first string',
       '    ' + '- '.green + 'second string',
@@ -149,7 +150,7 @@ describe('prettyjson general tests', function(){
     var input = [];
     var output = prettyjson.render(input, {emptyArrayMsg: '(empty)'});
 
-    expect(output).toEqual([
+    output.should.equal([
       '(empty)'
     ].join('\n'));
   });
@@ -161,25 +162,25 @@ describe('Printing numbers, booleans and other objects', function(){
     var input = 12345;
     var output = prettyjson.render(input, {}, 4);
 
-    expect(output).toEqual('    ' + '12345'.blue);
+    output.should.equal('    ' + '12345'.blue);
   });
 
   it("should print booleans correctly ", function(){
     var input = true;
     var output = prettyjson.render(input, {}, 4);
 
-    expect(output).toEqual('    ' + 'true'.green);
+    output.should.equal('    ' + 'true'.green);
 
     input = false;
     output = prettyjson.render(input, {}, 4);
 
-    expect(output).toEqual('    ' + 'false'.red);
+    output.should.equal('    ' + 'false'.red);
   });
 
   it("should print a null object correctly ", function(){
     var input = null;
     var output = prettyjson.render(input, {}, 4);
 
-    expect(output).toEqual('    ' + 'null'.grey);
+    output.should.equal('    ' + 'null'.grey);
   });
 });
