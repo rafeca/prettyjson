@@ -30,7 +30,7 @@
   "devDependencies": {
     "releasetools": "0.1.x",
     "step": "0.0.x",
-    "mocha": "~0.12.0",
+    "mocha": "~0.13.0",
     "should": "~0.5.1"
   }
 }

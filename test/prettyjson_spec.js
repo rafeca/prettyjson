@@ -1,4 +1,6 @@
-var prettyjson = require('../lib/prettyjson');
+var prettyjson = process.env.EXPRESS_COV
+  ? require('../lib-cov/prettyjson')
+  : require('../lib/prettyjson');
 var should = require('should');
 
 describe('prettyjson general tests', function(){

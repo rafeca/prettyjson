@@ -1,5 +1,6 @@
 var releaseTools = require('releasetools');
 var Step = require('step');
+var exec = require('child_process').exec;
 
 releaseTools.setOptions({
   examplePaths: [
@@ -36,12 +37,38 @@ task("test",function() {
   });
 }, true);
 
+desc("create test coverage file");
+task("test-cov",function() {
+  console.log('Creating test coverage file...');
+  
+  Step(
+    function() {
+      exec('rm -fr lib-cov', this);
+    },
+    function(err, stdout, stderr) {
+      if (err) throw err;
+      exec('jscoverage lib lib-cov', this);
+    },
+    function(err, stdout, stderr) {
+      if (err) throw err;
+      exec('EXPRESS_COV=1 node_modules/mocha/bin/mocha -R html-cov > docs/coverage.html', this);
+    },
+    function(err, stdout, stderr) {
+      if (err) fail(code);
+      else {
+        console.log('Done!');
+        complete();
+      }
+    }
+  );
+}, true);
+
 // Namespace with all the release related tasks
 namespace('release', function() {
 
   // Build task
   desc('Modify the working copy with all the release information');
-  task('build', ['test'], function(releaseType) {
+  task('build', ['test', 'test-cov'], function(releaseType) {
     Step(
       
       // Update Changelog
