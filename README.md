@@ -4,7 +4,7 @@ Package for formatting JSON data in a coloured YAML-style, perfect for CLI outpu
 
 ## How to install
 
-The easiest way is by installing it from the `npm` repository:
+Just install it via NPM:
     
     $ npm install prettyjson
 
@@ -88,3 +88,4 @@ then run the tests:
     
     $ npm test
 
+You can check the package's [test coverage](http://rafeca.com/prettyjson/coverage.html) if you are one of those test paranoics
