@@ -5,11 +5,10 @@
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" media="all" href="docco.css" />
-    <link rel="stylesheet" media="all" href="stylesheets/sh_style.css" />
+    <link rel="stylesheet" media="all" href="stylesheets/syntax.css" />
     <link rel="stylesheet" media="all" href="stylesheets/main.css" />
     
-    <script type="text/javascript" src="javascripts/sh_main.min.js"></script>
-    <script type="text/javascript" src="javascripts/sh_javascript.min.js"></script>
+    <script type="text/javascript" src="javascripts/highlight.pack.js"></script>
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -32,178 +31,160 @@
     
     <div id="container">
 
-      <h1>prettyjson <a href="http://travis-ci.org/rafeca/prettyjson"><img src="https://secure.travis-ci.org/rafeca/prettyjson.png" alt="Build Status">
-</a></h1>
+      <h1>prettyjson <a href="http://travis-ci.org/rafeca/prettyjson"><img src="https://secure.travis-ci.org/rafeca/prettyjson.png" alt="Build Status"></a></h1>
+<p>Package for formatting JSON data in a coloured YAML-style, perfect for CLI output
 
-<p>Package for formatting JSON data in a coloured YAML-style, perfect for CLI output</p>
-
+</p>
 <h2>How to install</h2>
+<p>Just install it via NPM:
 
-<p>Just install it via NPM:</p>
-
-<pre><code>$ npm install prettyjson
-</code></pre>
-
+</p>
+<pre><code class="lang-bash">$ npm install prettyjson</code></pre>
 <h2>Using it (from the CLI)</h2>
-
 <p>This package installs a command line interface to render JSON data in a more convenient way. You can use the CLI
-in three different ways:</p>
+in three different ways:
 
-<p><strong>Decode a JSON file:</strong> If you want to see the contents of a JSON file, just pass it as the first argument to the CLI:</p>
+</p>
+<p><strong>Decode a JSON file:</strong> If you want to see the contents of a JSON file, just pass it as the first argument to the CLI:
 
-<pre><code>$ prettyjson package.json
-</code></pre>
-
+</p>
+<pre><code class="lang-bash">$ prettyjson package.json</code></pre>
 <p><img src="http://rafeca.com/prettyjson/images/example3.png" alt="Example 1">
-</p>
 
+</p>
 <p><strong>Decode the stdin:</strong> You can also pipe the result of a command (for example an HTTP request) to the CLI to see
-the JSON result in a clearer way:</p>
+the JSON result in a clearer way:
 
-<pre><code>$ curl https://api.github.com/users/rafeca | prettyjson
-</code></pre>
-
+</p>
+<pre><code class="lang-bash">$ curl https://api.github.com/users/rafeca | prettyjson</code></pre>
 <p><img src="http://rafeca.com/prettyjson/images/example4.png" alt="Example 2">
+
 </p>
+<p><strong>Decode random strings:</strong> if you call the CLI with no arguments, you&#39;ll get a prompt where you can past JSON strings
+and they&#39;ll be automatically displayed in a clearer way:
 
-<p><strong>Decode random strings:</strong> if you call the CLI with no arguments, you'll get a prompt where you can past JSON strings
-and they'll be automatically displayed in a clearer way:</p>
-
+</p>
 <p><img src="http://rafeca.com/prettyjson/images/example5.png" alt="Example 3">
+
 </p>
-
 <p>If you install the package globally (with <code>npm install -g prettyjson</code>), the CLI will be installed automatically in your PATH
-thanks to npm.</p>
+thanks to npm.
 
+</p>
 <h2>Using it (from Node.js)</h2>
+<p>It&#39;s pretty easy to use it... you just have to include it in your script and call the <code>render()</code> method:
 
-<p>It's pretty easy to use it... you just have to include it in your script and call the <code>render()</code> method:</p>
-
-<pre><code>var prettyjson = require('prettyjson');
+</p>
+<pre><code class="lang-javascript">var prettyjson = require(&#39;prettyjson&#39;);
 
 var data = {
-  username: 'rafeca',
-  url: 'https://github.com/rafeca',
-  twitter_account: 'https://twitter.com/rafeca',
-  projects: ['prettyprint', 'connfu']
+  username: &#39;rafeca&#39;,
+  url: &#39;https://github.com/rafeca&#39;,
+  twitter_account: &#39;https://twitter.com/rafeca&#39;,
+  projects: [&#39;prettyprint&#39;, &#39;connfu&#39;]
 };
 
-console.log(prettyjson.render(data));
-</code></pre>
+console.log(prettyjson.render(data));</code></pre>
+<p>And will output:
 
-<p>And will output:</p>
-
-<p><img src="http://rafeca.com/prettyjson/images/example1.png" alt="Example 4">
 </p>
+<p><img src="http://rafeca.com/prettyjson/images/example1.png" alt="Example 4">
 
+</p>
 <p>You can also configure the colors of the hash keys and array dashes
-(using <a href="https://github.com/Marak/colors.js">colors.js</a> colors syntax):</p>
+(using <a href="https://github.com/Marak/colors.js">colors.js</a> colors syntax):
 
-<pre><code>var prettyjson = require('prettyjson');
+</p>
+<pre><code class="lang-javascript">var prettyjson = require(&#39;prettyjson&#39;);
 
 var data = {
-  username: 'rafeca',
-  url: 'https://github.com/rafeca',
-  twitter_account: 'https://twitter.com/rafeca',
-  projects: ['prettyprint', 'connfu']
+  username: &#39;rafeca&#39;,
+  url: &#39;https://github.com/rafeca&#39;,
+  twitter_account: &#39;https://twitter.com/rafeca&#39;,
+  projects: [&#39;prettyprint&#39;, &#39;connfu&#39;]
 };
 
 console.log(prettyjson.render(data, {
-  keysColor: 'rainbow', 
-  dashColor: 'magenta'
-}));
-</code></pre>
+  keysColor: &#39;rainbow&#39;, 
+  dashColor: &#39;magenta&#39;
+}));</code></pre>
+<p>Will output something like:
 
-<p>Will output something like:</p>
-
-<p><img src="http://rafeca.com/prettyjson/images/example2.png" alt="Example 5">
 </p>
+<p><img src="http://rafeca.com/prettyjson/images/example2.png" alt="Example 5">
 
+</p>
 <h2>Annotated source</h2>
+<p>You can check the <a href="http://rafeca.com/prettyjson/prettyjson.html">annotated source</a> for more information about how it works
 
-<p>You can check the <a href="http://rafeca.com/prettyjson/prettyjson.html">annotated source</a> for more information about how it works</p>
-
+</p>
 <h2>Running Tests</h2>
+<p>To run the test suite first invoke the following command within the repo, installing the development dependencies:
 
-<p>To run the test suite first invoke the following command within the repo, installing the development dependencies:</p>
+</p>
+<pre><code class="lang-bash">$ npm install --dev</code></pre>
+<p>then run the tests:
 
-<pre><code>$ npm install --dev
-</code></pre>
-
-<p>then run the tests:</p>
-
-<pre><code>$ npm test
-</code></pre>
-
-<p>You can check the package's <a href="http://rafeca.com/prettyjson/coverage.html">test coverage</a> if you are one of those test paranoics</p>
+</p>
+<pre><code class="lang-bash">$ npm test</code></pre>
+<p>You can check the package&#39;s <a href="http://rafeca.com/prettyjson/coverage.html">test coverage</a> if you are one of those test paranoics</p>
 
 
       <h2>Change Log</h2>
       
-      <h3>0.4.0 — <em>February 24, 2012</em></h3>
-
+      <h3>0.5.0 — <em>June 24, 2012</em></h3>
+<ul>
+<li>Updated dependencies, added support for Node.js up to 0.7.12</li>
+<li>Minor improvements in README file</li>
+<li>Add JSHint to the build process</li>
+<li>Add jake task to execute tests automatically</li>
+<li>Add test coverage info</li>
+</ul>
+<h3>0.4.0 — <em>February 24, 2012</em></h3>
 <ul>
 <li>Now prettyjson uses Mocha test framework instead of jasmine-node</li>
 <li>Fixed leak in a &quot;key&quot; variable</li>
 </ul>
-
 <h3>0.3.1 — <em>February 15, 2012</em></h3>
-
 <ul>
 <li>Modified website design</li>
 <li>Modify webpage link in package.json</li>
 </ul>
-
 <h3>0.3.0 — <em>January 24, 2012</em></h3>
-
 <ul>
 <li>Added CLI interface</li>
 <li>Now prettyjson package requires Nodejs 0.6.x</li>
 </ul>
-
 <h3>0.2.1 — <em>January 23, 2012</em></h3>
-
 <ul>
 <li>Fix: Bug when the JSON has attributes with booleans, integers or null values</li>
 </ul>
-
 <h3>0.2.0 — <em>January 22, 2012</em></h3>
-
 <ul>
 <li>Now using node-releasetools for the release process</li>
 <li>Disabled Node.js 0.6 from Travis CI temporally</li>
 <li>Minor copy in Readme.md</li>
 </ul>
-
 <h3>0.1.4 — <em>December 1, 2011</em></h3>
-
 <ul>
 <li>Added contributors to the Readme file</li>
 </ul>
-
 <h3>0.1.3 — <em>November 17, 2011</em></h3>
-
 <ul>
 <li>Fixed the GitHub publishing of tags in the jake task</li>
 <li>Updated package.json to make it compatible with Node.js 0.6.x</li>
 <li>Updated travis YAML file to use the new Node.js support on Travis</li>
 </ul>
-
 <h3>0.1.2 — <em>November 14, 2011</em></h3>
-
 <ul>
 <li>Updated Jakefile with tasks to automate publishing new versions</li>
 </ul>
-
 <h3>0.1.1 — <em>October 11, 2011</em></h3>
-
 <ul>
 <li>Added changelog jake task to add changelog automatically</li>
 <li>The library version is retrieved from <code>package.json</code> file</li>
 </ul>
-
 <h3>0.1.0 — <em>October 10, 2011</em></h3>
-
 <ul>
 <li>Initial release</li>
 </ul>
@@ -211,33 +192,40 @@ console.log(prettyjson.render(data, {
             
       <h2>Contributors</h2>
       
-      <p>Rafael de Oleza <a href="mailto:rafeca@gmail.com">rafeca@gmail.com</a></p>
+      <p>Rafael de Oleza <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x72;&#x61;&#102;&#x65;&#x63;&#x61;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x72;&#x61;&#102;&#x65;&#x63;&#x61;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;</a>
+</p>
 
       
       <h2>License</h2>
       
-      <p>(The MIT License)</p>
+      <p>(The MIT License)
 
-<p>Copyright (c) 2011 Rafael de Oleza <a href="mailto:rafeca@gmail.com">rafeca@gmail.com</a></p>
+</p>
+<p>Copyright (c) 2011 Rafael de Oleza <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x72;&#x61;&#x66;&#101;&#99;&#x61;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;">&#x72;&#x61;&#x66;&#101;&#99;&#x61;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;</a>
 
+</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
+&#39;Software&#39;), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
-the following conditions:</p>
+the following conditions:
 
+</p>
 <p>The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.</p>
+included in all copies or substantial portions of the Software.
 
-<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+</p>
+<p>THE SOFTWARE IS PROVIDED &#39;AS IS&#39;, WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+</p>
 
 
     </div>
@@ -250,6 +238,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
       <a class="fadedlink" href="mailto:rafeca@gmail.com"><img src="images/gmail-logo.png" alt="@gmail"></a>
     </div>
     
-    <script type="text/javascript">sh_highlightDocument();</script>
+    <script type="text/javascript">
+        var codes = document.getElementsByTagName('code');
+        for (var i=0;i<codes.length;i++) {
+          if (codes[i].className.indexOf('lang-') === 0) {
+            codes[i].className = codes[i].className.slice('lang-'.length);
+          }
+
+          switch(codes[i].className) {
+            case 'js':
+              codes[i].className = 'javascript';
+              break;
+          }
+        }
+        hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>
