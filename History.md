@@ -1,3 +1,11 @@
+### 0.5.0 — *June 24, 2012*
+
+  * Updated dependencies, added support for Node.js up to 0.7.12
+  * Minor improvements in README file
+  * Add JSHint to the build process
+  * Add jake task to execute tests automatically
+  * Add test coverage info
+
 ### 0.4.0 — *February 24, 2012*
 
   * Now prettyjson uses Mocha test framework instead of jasmine-node
