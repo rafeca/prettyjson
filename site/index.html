@@ -5,11 +5,10 @@
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" media="all" href="docco.css" />
-    <link rel="stylesheet" media="all" href="stylesheets/sh_style.css" />
+    <link rel="stylesheet" media="all" href="stylesheets/syntax.css" />
     <link rel="stylesheet" media="all" href="stylesheets/main.css" />
     
-    <script type="text/javascript" src="javascripts/sh_main.min.js"></script>
-    <script type="text/javascript" src="javascripts/sh_javascript.min.js"></script>
+    <script type="text/javascript" src="javascripts/highlight.pack.js"></script>
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -56,6 +55,20 @@
       <a class="fadedlink" href="mailto:rafeca@gmail.com"><img src="images/gmail-logo.png" alt="@gmail"></a>
     </div>
     
-    <script type="text/javascript">sh_highlightDocument();</script>
+    <script type="text/javascript">
+        var codes = document.getElementsByTagName('code');
+        for (var i=0;i<codes.length;i++) {
+          if (codes[i].className.indexOf('lang-') === 0) {
+            codes[i].className = codes[i].className.slice('lang-'.length);
+          }
+
+          switch(codes[i].className) {
+            case 'js':
+              codes[i].className = 'javascript';
+              break;
+          }
+        }
+        hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>

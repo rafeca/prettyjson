@@ -5,8 +5,10 @@ Package for formatting JSON data in a coloured YAML-style, perfect for CLI outpu
 ## How to install
 
 Just install it via NPM:
-    
-    $ npm install prettyjson
+
+```bash
+$ npm install prettyjson
+```
 
 ## Using it (from the CLI)
 
@@ -14,15 +16,19 @@ This package installs a command line interface to render JSON data in a more con
 in three different ways:
 
 **Decode a JSON file:** If you want to see the contents of a JSON file, just pass it as the first argument to the CLI:
-    
-    $ prettyjson package.json
+
+```bash
+$ prettyjson package.json
+```
 
 ![Example 1](http://rafeca.com/prettyjson/images/example3.png)
 
 **Decode the stdin:** You can also pipe the result of a command (for example an HTTP request) to the CLI to see
 the JSON result in a clearer way:
-    
-    $ curl https://api.github.com/users/rafeca | prettyjson
+
+```bash
+$ curl https://api.github.com/users/rafeca | prettyjson
+```
 
 ![Example 2](http://rafeca.com/prettyjson/images/example4.png)
 
@@ -37,17 +43,19 @@ thanks to npm.
 ## Using it (from Node.js)
 
 It's pretty easy to use it... you just have to include it in your script and call the `render()` method:
+
+```javascript
+var prettyjson = require('prettyjson');
     
-    var prettyjson = require('prettyjson');
-    
-    var data = {
-      username: 'rafeca',
-      url: 'https://github.com/rafeca',
-      twitter_account: 'https://twitter.com/rafeca',
-      projects: ['prettyprint', 'connfu']
-    };
-    
-    console.log(prettyjson.render(data));
+var data = {
+  username: 'rafeca',
+  url: 'https://github.com/rafeca',
+  twitter_account: 'https://twitter.com/rafeca',
+  projects: ['prettyprint', 'connfu']
+};
+
+console.log(prettyjson.render(data));
+```
 
 And will output:
     
@@ -55,20 +63,22 @@ And will output:
 
 You can also configure the colors of the hash keys and array dashes
 (using [colors.js](https://github.com/Marak/colors.js) colors syntax):
-    
-    var prettyjson = require('prettyjson');
 
-    var data = {
-      username: 'rafeca',
-      url: 'https://github.com/rafeca',
-      twitter_account: 'https://twitter.com/rafeca',
-      projects: ['prettyprint', 'connfu']
-    };
+```javascript
+var prettyjson = require('prettyjson');
 
-    console.log(prettyjson.render(data, {
-      keysColor: 'rainbow', 
-      dashColor: 'magenta'
-    }));
+var data = {
+  username: 'rafeca',
+  url: 'https://github.com/rafeca',
+  twitter_account: 'https://twitter.com/rafeca',
+  projects: ['prettyprint', 'connfu']
+};
+
+console.log(prettyjson.render(data, {
+  keysColor: 'rainbow', 
+  dashColor: 'magenta'
+}));
+```
 
 Will output something like:
 
@@ -81,11 +91,15 @@ You can check the [annotated source](http://rafeca.com/prettyjson/prettyjson.htm
 ## Running Tests
 
 To run the test suite first invoke the following command within the repo, installing the development dependencies:
-    
-    $ npm install --dev
+
+```bash
+$ npm install --dev
+```
 
 then run the tests:
-    
-    $ npm test
+
+```bash
+$ npm test
+```
 
 You can check the package's [test coverage](http://rafeca.com/prettyjson/coverage.html) if you are one of those test paranoics
