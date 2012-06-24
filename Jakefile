@@ -15,7 +15,7 @@ releaseTools.setOptions({
 
 // Test task
 desc("execute tests");
-task("test",function() {
+task("test", function() {
   var spawn = require('child_process').spawn;
   var child = spawn('npm', ['test']);
   
@@ -38,8 +38,8 @@ task("test",function() {
 }, true);
 
 // Auto tests task
-desc("execute tests");
-task("watch",function() {
+desc("auto execute tests");
+task("watch", function() {
   var spawn = require('child_process').spawn;
   var child = spawn('node_modules/mocha/bin/mocha', ['-w', "-G"]);
 
@@ -60,7 +60,7 @@ task("watch",function() {
 }, true);
 
 desc("create test coverage file");
-task("test-cov",function() {
+task("test-cov", function() {
   console.log('Creating test coverage file...');
   
   Step(
@@ -152,7 +152,7 @@ namespace('release', function() {
 
   // Publish task
   desc('Publish to GitHub and NPM the new version');
-  task('publish', ['test'] ,function() {
+  task('publish', ['test'] , function() {
     Step(
       // Check if the `History.md` is modified
       // (to ensure that the `release:build` task has been already executed)
