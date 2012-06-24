@@ -22,15 +22,16 @@
     "prettyjson": "./bin/prettyjson"
   },
   "engines": {
-    "node": ">= 0.6.0 < 0.7.0"
+    "node": ">= 0.6.0 =< 0.7.12"
   },
   "dependencies": {
-    "colors": "0.5.x"
+    "colors": "0.6.0-1"
   },
   "devDependencies": {
     "releasetools": "0.1.x",
-    "step": "0.0.x",
-    "mocha": "~0.13.0",
-    "should": "~0.5.1"
+    "step": "0.0.5",
+    "mocha": "1.2.0",
+    "should": "0.6.3",
+    "jake": "0.3.3",
   }
 }
