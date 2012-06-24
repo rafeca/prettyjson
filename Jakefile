@@ -37,6 +37,28 @@ task("test",function() {
   });
 }, true);
 
+// Auto tests task
+desc("execute tests");
+task("watch",function() {
+  var spawn = require('child_process').spawn;
+  var child = spawn('node_modules/mocha/bin/mocha', ['-w', "-G"]);
+
+  child.stderr.on('data', function(stderr) {
+    process.stderr.write(stderr);
+  });
+  child.stdout.on('data', function(stdout) {
+    process.stdout.write(stdout);
+  });
+  child.on('exit', function(code) {
+    if (code !== 0) {
+      fail(code);
+    } else {
+      console.log('Done!');
+      complete();
+    }
+  });
+}, true);
+
 desc("create test coverage file");
 task("test-cov",function() {
   console.log('Creating test coverage file...');
@@ -54,7 +76,7 @@ task("test-cov",function() {
       exec('EXPRESS_COV=1 node_modules/mocha/bin/mocha -R html-cov > docs/coverage.html', this);
     },
     function(err, stdout, stderr) {
-      if (err) fail(code);
+      if (err) fail(err);
       else {
         console.log('Done!');
         complete();
@@ -103,6 +125,29 @@ namespace('release', function() {
       if (err) fail();
       else complete();
     });
+  }, true);
+
+  // Publish task
+  desc('Publish only the static site');
+  task('publish-site', ['site'], function() {
+    Step(
+      // Update gh-pages branch
+      function(err) {
+        if (err) throw err;
+        console.log('Merging changes into gh-pages branch...');
+        releaseTools.updatePagesBranch(this);
+      },
+      // Push to GitHub
+      function(err) {
+        if (err) throw err;
+        console.log('Pushing changes to GitHub...');
+        releaseTools.pushToGit(this);
+      },
+      function(err){
+        if (err) fail(err);
+        else complete();
+      }
+    );  
   }, true);
 
   // Publish task
