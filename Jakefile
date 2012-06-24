@@ -37,6 +37,22 @@ task("test", function() {
   });
 }, true);
 
+
+// Lint task
+desc("execute JSHint checks");
+task("jshint", function() {
+  exec('node_modules/jshint/bin/hint bin/ lib/ --config ".jshint"', function(err, stdout, stderr) {
+    if (err) {
+      console.log(err);
+      fail(err);
+    }
+    else {
+      console.log('Done!');
+      complete();
+    }
+  });
+}, true);
+
 // Auto tests task
 desc("auto execute tests");
 task("watch", function() {
@@ -90,7 +106,7 @@ namespace('release', function() {
 
   // Build task
   desc('Modify the working copy with all the release information');
-  task('build', ['test', 'test-cov'], function(releaseType) {
+  task('build', ['test', 'test-cov', 'jshint'], function(releaseType) {
     Step(
       
       // Update Changelog
