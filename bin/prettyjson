@@ -2,7 +2,11 @@
 
 var prettyjson = require('../lib/prettyjson');
 var fs=require('fs');
-
+var options = {
+  keysColor: process.env.JSON_PP_KEY_COLOR,
+  dashColor: process.env.JSON_PP_DASH_COLOR,
+  defaultIndent: process.env.JSON_PP_INDENT
+};
 
 var renderInputJson = function(input){
   if (input === '') {
@@ -10,7 +14,7 @@ var renderInputJson = function(input){
   }
   try {
     var inputData = JSON.parse(input);
-    console.log(prettyjson.render(inputData));
+    console.log(prettyjson.render(inputData, options));
   } catch (e) {
     console.log('Error:'.red + ' Not valid JSON!');
   }
