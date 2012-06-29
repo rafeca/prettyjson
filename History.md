@@ -1,3 +1,8 @@
+### 0.6.0 — *June 29, 2012*
+
+  * Update dependencies to support Node.js v0.8
+  * Adding ability to use environmental variables
+
 ### 0.5.0 — *June 24, 2012*
 
   * Updated dependencies, added support for Node.js up to 0.7.12
