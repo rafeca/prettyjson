@@ -40,6 +40,16 @@ and they'll be automatically displayed in a clearer way:
 If you install the package globally (with `npm install -g prettyjson`), the CLI will be installed automatically in your PATH
 thanks to npm.
 
+### Customizing colors via command line
+
+Now it's possible to customize the colors of the output via environment variables, thanks to @bahamas10:
+
+```bash
+$  PRETTYJSON_KEYS=red PRETTYJSON_DASH=blue bin/prettyjson package.json
+```
+
+The available options are `PRETTYJSON_KEYS`, `PRETTYJSON_DASH` and `PRETTYJSON_INDENT`.
+
 ## Using it (from Node.js)
 
 It's pretty easy to use it... you just have to include it in your script and call the `render()` method:
