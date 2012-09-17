@@ -75,7 +75,7 @@ thanks to npm.
 <p>Now it&#39;s possible to customize the colors of the output via environment variables, thanks to @bahamas10:
 
 </p>
-<pre><code class="lang-bash">$  PRETTYJSON_KEYS=red PRETTYJSON_DASH=blue bin/prettyjson package.json</code></pre>
+<pre><code class="lang-bash">$ PRETTYJSON_KEYS=red PRETTYJSON_DASH=blue prettyjson package.json</code></pre>
 <p>The available options are <code>PRETTYJSON_KEYS</code>, <code>PRETTYJSON_DASH</code> and <code>PRETTYJSON_INDENT</code>.
 
 </p>
@@ -205,9 +205,74 @@ console.log(prettyjson.render(data, {
             
       <h2>Contributors</h2>
       
-      <p>Rafael de Oleza <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#x72;&#97;&#102;&#x65;&#x63;&#97;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x72;&#97;&#102;&#x65;&#x63;&#97;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a>
-Dave Eddy <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#x61;&#x76;&#101;&#64;&#x64;&#97;&#118;&#x65;&#101;&#x64;&#100;&#x79;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#x76;&#101;&#64;&#x64;&#97;&#118;&#x65;&#101;&#x64;&#100;&#x79;&#46;&#99;&#111;&#109;</a>
+      <ul>
+<li>Dave Eddy <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#100;&#97;&#118;&#101;&#x40;&#100;&#x61;&#118;&#x65;&#101;&#100;&#100;&#x79;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#97;&#118;&#101;&#x40;&#100;&#x61;&#118;&#x65;&#101;&#100;&#100;&#x79;&#x2e;&#99;&#x6f;&#x6d;</a></li>
+<li>Rafael de Oleza <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#114;&#x61;&#x66;&#x65;&#99;&#97;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#114;&#x61;&#x66;&#x65;&#99;&#97;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a></li>
+</ul>
+
+
+      <h2>How to contribute</h2>
+      
+      <p>Good pull requests - patches, improvements, new features - are a fantastic
+help.
+
 </p>
+<p>If you&#39;ve spotted any small, obvious errors and want to help out by patching it,
+that will be much appreciated.
+
+</p>
+<p>If your contribution involves a significant amount of work or substantial
+changes to any part of the project, please open a &quot;contribution enquiry&quot; issue
+first to check that the work is wanted or matches the goals of the project.
+
+</p>
+<p>All pull requests should remain focused in scope and avoid containing unrelated
+commits.
+
+</p>
+<p>Please follow this process; it&#39;s the best way to get your work included in the
+project:
+
+</p>
+<ol>
+<li><p><a href="http://help.github.com/fork-a-repo/">Fork</a> the project.</p>
+</li>
+<li><p>Clone your fork (<code>git clone
+git@github.com:&lt;your-username&gt;/&lt;repo-name&gt;.git</code>).</p>
+</li>
+<li><p>Add an <code>upstream</code> remote (<code>git remote add upstream
+git://github.com/&lt;upsteam-owner&gt;/&lt;repo-name&gt;.git</code>).</p>
+</li>
+<li><p>Get the latest changes from upstream (e.g. <code>git pull upstream
+&lt;dev-branch&gt;</code>).</p>
+</li>
+<li><p>Create a new topic branch to contain your feature, change, or fix (<code>git
+checkout -b &lt;topic-branch-name&gt;</code>).</p>
+</li>
+<li><p>Create the needed tests to ensure that your contribution is not broken in the future.
+If you are creating a small fix or patch to an existing feature, just a simple test
+will do, if it is a brand new feature, make sure to create a new test suite.</p>
+</li>
+<li><p>Make sure that your changes adhere to the current coding conventions used
+throughout the project - indentation, accurate comments, etc.</p>
+</li>
+<li><p>Commit your changes in logical chunks; use git&#39;s <a href="https://help.github.com/articles/interactive-rebase">interactive
+rebase</a> feature to tidy
+up your commits before making them public. Please adhere to these <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">git commit
+message guidelines</a>
+or your pull request is unlikely be merged into the main project.</p>
+</li>
+<li><p>Locally merge (or rebase) the upstream branch into your topic branch.</p>
+</li>
+<li><p>Push your topic branch up to your fork (<code>git push origin
+&lt;topic-branch-name&gt;</code>).</p>
+</li>
+<li><p><a href="http://help.github.com/send-pull-requests/">Open a Pull Request</a> with a
+clear title and description.</p>
+</li>
+</ol>
+<p>If you have any other questions about contributing, please feel free to contact
+me.</p>
 
       
       <h2>License</h2>
@@ -215,7 +280,7 @@ Dave Eddy <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#x61;&#x76;&#1
       <p>(The MIT License)
 
 </p>
-<p>Copyright (c) 2011 Rafael de Oleza <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x72;&#x61;&#102;&#101;&#99;&#x61;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#x72;&#x61;&#102;&#101;&#99;&#x61;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a>
+<p>Copyright (c) 2011 Rafael de Oleza <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#114;&#97;&#102;&#x65;&#99;&#97;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#114;&#97;&#102;&#x65;&#99;&#97;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a>
 
 </p>
 <p>Permission is hereby granted, free of charge, to any person obtaining
