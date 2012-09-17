@@ -28,7 +28,7 @@
     "colors": "0.6.0-1"
   },
   "devDependencies": {
-    "releasetools": "0.3.0",
+    "releasetools": "0.4.0",
     "step": "0.0.5",
     "mocha": "1.2.2",
     "should": "0.6.3",
