@@ -6,7 +6,7 @@ var should = require('should');
 describe('prettyjson general tests', function(){
 
   it("should output a string exactly equal as the input", function(){
-    
+
     var input = 'This is a string'
     var output = prettyjson.render(input);
 
@@ -14,15 +14,15 @@ describe('prettyjson general tests', function(){
   });
 
   it("should output a string with indentation", function(){
-    
+
     var input = 'This is a string'
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal('    ' + input);
   });
-  
+
   it("should output an array of strings", function(){
-    
+
     var input = ['first string', 'second string'];
     var output = prettyjson.render(input);
 
@@ -31,9 +31,9 @@ describe('prettyjson general tests', function(){
       '- '.green + input[1]
     ].join('\n'));
   });
-  
+
   it("should output an array of arrays", function(){
-    
+
     var input = ['first string', ['nested 1', 'nested 2'], 'second string'];
     var output = prettyjson.render(input);
 
@@ -45,9 +45,9 @@ describe('prettyjson general tests', function(){
       '- '.green + input[2],
     ].join('\n'));
   });
-  
+
   it("should output a hash of strings", function(){
-    
+
     var input = {param1: 'first string', param2: 'second string'};
     var output = prettyjson.render(input);
 
@@ -56,9 +56,9 @@ describe('prettyjson general tests', function(){
       'param2: '.green + 'second string',
     ].join('\n'));
   });
-  
+
   it("should output a hash of hashes", function(){
-    
+
     var input = {first_param: {subparam: 'first string', subparam2: 'another string'}, second_param: 'second string'};
     var output = prettyjson.render(input);
 
@@ -71,7 +71,7 @@ describe('prettyjson general tests', function(){
   });
 
   it("should indent correctly the hashes keys", function(){
-    
+
     var input = {very_large_param: 'first string', param: 'second string'};
     var output = prettyjson.render(input);
 
@@ -80,9 +80,9 @@ describe('prettyjson general tests', function(){
       'param: '.green + '           second string',
     ].join('\n'));
   });
-  
+
   it("should output a really nested object", function(){
-    
+
     var input = {
       first_param: {
         subparam: 'first string',
@@ -96,7 +96,7 @@ describe('prettyjson general tests', function(){
       }],
       empty_array: []
     };
-    
+
     var output = prettyjson.render(input);
 
     output.should.equal([
@@ -116,7 +116,7 @@ describe('prettyjson general tests', function(){
       '  (empty array)'
     ].join('\n'));
   });
-  
+
   it("should allow to configure colors for hash keys", function(){
     var input = {param1: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'blue'});
@@ -126,7 +126,7 @@ describe('prettyjson general tests', function(){
       'param2: '.blue + 'second string',
     ].join('\n'));
   });
-  
+
   it("should allow to configure rainbow as color", function(){
     var input = {param_long: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'rainbow'});
@@ -136,7 +136,7 @@ describe('prettyjson general tests', function(){
       'param2: '.rainbow + '    second string',
     ].join('\n'));
   });
-  
+
   it("should allow to configure the default indentation", function(){
     var input = {param: ['first string', "second string"]};
     var output = prettyjson.render(input, {defaultIndentation: 4});
@@ -147,7 +147,7 @@ describe('prettyjson general tests', function(){
       '    ' + '- '.green + 'second string',
     ].join('\n'));
   });
-  
+
   it("should allow to configure the empty message for arrays", function(){
     var input = [];
     var output = prettyjson.render(input, {emptyArrayMsg: '(empty)'});

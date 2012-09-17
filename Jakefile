@@ -18,9 +18,9 @@ desc("execute tests");
 task("test", function() {
   var spawn = require('child_process').spawn;
   var child = spawn('npm', ['test']);
-  
+
   console.log('executing the tests...');
-  
+
   child.stderr.on('data', function(stderr) {
     process.stderr.write(stderr);
   });
@@ -78,7 +78,7 @@ task("watch", function() {
 desc("create test coverage file");
 task("test-cov", function() {
   console.log('Creating test coverage file...');
-  
+
   Step(
     function() {
       exec('rm -fr lib-cov', this);
@@ -108,7 +108,7 @@ namespace('release', function() {
   desc('Modify the working copy with all the release information');
   task('build', ['test', 'test-cov', 'jshint'], function(releaseType) {
     Step(
-      
+
       // Update Changelog
       function() {
         console.log('Updating History.md file...');
@@ -132,7 +132,7 @@ namespace('release', function() {
       }
     );
   }, true);
-  
+
   // Create site task
   desc('Create the public site');
   task('site', function(releaseType) {
@@ -175,7 +175,7 @@ namespace('release', function() {
       function() {
         releaseTools.isWorkingCopyClean('History.md', this);
       },
-      
+
       // Commit to Git
       function(err, result) {
         if (err) throw('Error while checking if the git tree is clean: ' + err);
@@ -183,21 +183,21 @@ namespace('release', function() {
         console.log('Bumping version and creating git tag...');
         releaseTools.commitToGit(this);
       },
-      
+
       // Update gh-pages branch
       function(err) {
         if (err) throw err;
         console.log('Merging changes into gh-pages branch...');
         releaseTools.updatePagesBranch(this);
       },
-      
+
       // Push to GitHub
       function(err) {
         if (err) throw err;
         console.log('Pushing changes to GitHub...');
         releaseTools.pushToGit(this);
       },
-      
+
       // Publish to NPM
       function(err) {
         if (err) throw err;
@@ -208,9 +208,9 @@ namespace('release', function() {
         if (err) fail(err);
         else complete();
       }
-    );  
+    );
   }, true);
-  
+
   // Update package.json task
   desc('Bump version in package.json');
   task('bump', function(releaseType) {
