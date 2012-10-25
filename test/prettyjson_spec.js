@@ -200,8 +200,18 @@ describe('prettyjson.renderString() method', function(){
     output.should.equal('');
   });
 
-  it('should return an error if the input has not a valid JSON format', function(){
-    var output = prettyjson.renderString('invalid stuff goes here!');
+  it('should return an error message if the input is an invalid JSON string', function(){
+    var output = prettyjson.renderString('not valid!!');
     output.should.equal('Error:'.red + ' Not valid JSON!');
+  });
+
+  it('should return the prettyfied string if it is a valid JSON string', function(){
+    var output = prettyjson.renderString('{"test": "OK"}');
+    output.should.equal('test: '.green + 'OK');
+  });
+
+  it('should dismiss trailing characters which are not JSON', function(){
+    var output = prettyjson.renderString('characters that are not JSON at all... {"test": "OK"}');
+    output.should.equal("characters that are not JSON at all... \n" + 'test: '.green + 'OK');
   });
 });
