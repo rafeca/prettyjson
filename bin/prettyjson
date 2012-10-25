@@ -9,22 +9,14 @@ var options = {
 };
 
 var renderInputJson = function(input){
-  if (input === '') {
-    return;
-  }
-  try {
-    var inputData = JSON.parse(input);
-    console.log(prettyjson.render(inputData, options));
-  } catch (e) {
-    console.log('Error:'.red + ' Not valid JSON!');
-  }
+  console.log(prettyjson.renderString(input, options));
 };
 
 if (process.argv.length > 2) {
   // First parameter is the file to read and parse
   var param = process.argv[2];
   try {
-    renderInputJson(fs.readFileSync(param));
+    renderInputJson(fs.readFileSync(param, 'utf8'));
   } catch (e) {
     console.log('Error: '.red + "File '" + param + "' does not exist");  
   }

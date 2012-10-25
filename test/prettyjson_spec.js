@@ -158,7 +158,6 @@ describe('prettyjson general tests', function() {
   });
 });
 
-
 describe('Printing numbers, booleans and other objects', function() {
   it("should print numbers correctly ", function() {
     var input = 12345;
@@ -184,5 +183,25 @@ describe('Printing numbers, booleans and other objects', function() {
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal('    ' + 'null'.grey);
+  });
+});
+
+describe('prettyjson.renderString() method', function(){
+  it('should return an empty string if input is empty', function(){
+    var input = '';
+
+    var output = prettyjson.renderString(input);
+
+    output.should.equal('');
+  });
+
+  it('should return an empty string if input is not a string', function(){
+    var output = prettyjson.renderString({});
+    output.should.equal('');
+  });
+
+  it('should return an error if the input has not a valid JSON format', function(){
+    var output = prettyjson.renderString('invalid stuff goes here!');
+    output.should.equal('Error:'.red + ' Not valid JSON!');
   });
 });
