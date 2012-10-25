@@ -57,7 +57,7 @@ task("jshint", function() {
 desc("auto execute tests");
 task("watch", function() {
   var spawn = require('child_process').spawn;
-  var child = spawn('node_modules/mocha/bin/mocha', ['-w', "-G"]);
+  var child = spawn('node_modules/mocha/bin/mocha', ['-w', '-G', '--reporter', 'spec']);
 
   child.stderr.on('data', function(stderr) {
     process.stderr.write(stderr);
