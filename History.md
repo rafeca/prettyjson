@@ -1,3 +1,10 @@
+### 0.7.0 — *October 25, 2012*
+
+  * Allow having non-JSON characters at the beginning of the input string (ideal for curl -i)
+  * Add a renderString() method to be used by the CLI
+  * Change test reporter style to spec
+  * Upgrade dependencies to the last versions
+
 ### 0.6.0 — *June 29, 2012*
 
   * Update dependencies to support Node.js v0.8
