@@ -214,4 +214,9 @@ describe('prettyjson.renderString() method', function(){
     var output = prettyjson.renderString('characters that are not JSON at all... {"test": "OK"}');
     output.should.equal("characters that are not JSON at all... \n" + 'test: '.green + 'OK');
   });
+
+  it('should dismiss trailing characters which are not JSON with an array', function(){
+    var output = prettyjson.renderString('characters that are not JSON at all... ["test"]');
+    output.should.equal("characters that are not JSON at all... \n" + '- '.green + 'test');
+  });
 });
