@@ -1,3 +1,7 @@
+### 0.7.1 — *October 29, 2012*
+
+  * Fix bug in 0.7.0 when input is an array
+
 ### 0.7.0 — *October 25, 2012*
 
   * Allow having non-JSON characters at the beginning of the input string (ideal for curl -i)
