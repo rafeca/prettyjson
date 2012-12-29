@@ -45,10 +45,10 @@ thanks to npm.
 Now it's possible to customize the colors of the output via environment variables, thanks to @bahamas10:
 
 ```bash
-$ PRETTYJSON_KEYS=red PRETTYJSON_DASH=blue prettyjson package.json
+$ PRETTYJSON_KEYS=red PRETTYJSON_DASH=blue PRETTYJSON_STRING=yellow prettyjson package.json
 ```
 
-The available options are `PRETTYJSON_KEYS`, `PRETTYJSON_DASH` and `PRETTYJSON_INDENT`.
+The available options are `PRETTYJSON_KEYS`, `PRETTYJSON_DASH`, `PRETTYJSON_STRING` and `PRETTYJSON_INDENT`.
 
 ## Using it (from Node.js)
 
@@ -86,7 +86,8 @@ var data = {
 
 console.log(prettyjson.render(data, {
   keysColor: 'rainbow', 
-  dashColor: 'magenta'
+  dashColor: 'magenta',
+  stringColor: 'yellow'
 }));
 ```
 
