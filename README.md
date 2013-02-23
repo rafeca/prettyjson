@@ -56,7 +56,7 @@ It's pretty easy to use it... you just have to include it in your script and cal
 
 ```javascript
 var prettyjson = require('prettyjson');
-    
+
 var data = {
   username: 'rafeca',
   url: 'https://github.com/rafeca',
@@ -68,7 +68,7 @@ console.log(prettyjson.render(data));
 ```
 
 And will output:
-    
+
 ![Example 4](http://rafeca.com/prettyjson/images/example1.png)
 
 You can also configure the colors of the hash keys and array dashes
@@ -85,9 +85,9 @@ var data = {
 };
 
 console.log(prettyjson.render(data, {
-  keysColor: 'rainbow', 
+  keysColor: 'rainbow',
   dashColor: 'magenta',
-  stringColor: 'yellow'
+  stringColor: 'white'
 }));
 ```
 
