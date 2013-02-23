@@ -227,4 +227,9 @@ describe('prettyjson.renderString() method', function(){
     var output = prettyjson.renderString('characters that are not JSON at all... ["test"]');
     output.should.equal("characters that are not JSON at all... \n" + '- '.green + 'test');
   });
+
+  it('should be able to accept the options parameter', function(){
+    var output = prettyjson.renderString('{"test": "OK"}', {stringColor: 'red'});
+    output.should.equal('test: '.green + 'OK'.red);
+  });
 });
