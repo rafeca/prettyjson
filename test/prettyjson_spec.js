@@ -154,6 +154,16 @@ describe('prettyjson general tests', function() {
       '(empty)'
     ].join('\n'));
   });
+
+  it("should allow to configure colors for strings", function() {
+    var input = {param1: 'first string', param2: 'second string'};
+    var output = prettyjson.render(input, {keysColor: 'blue', stringColor: 'red'});
+
+    output.should.equal([
+      'param1: '.blue + 'first string'.red,
+      'param2: '.blue + 'second string'.red
+    ].join('\n'));
+  });
 });
 
 describe('Printing numbers, booleans and other objects', function() {

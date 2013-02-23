@@ -5,7 +5,8 @@ var fs=require('fs');
 var options = {
   keysColor: process.env.PRETTYJSON_KEYS,
   dashColor: process.env.PRETTYJSON_DASH,
-  defaultIndent: process.env.PRETTYJSON_INDENT
+  defaultIndent: process.env.PRETTYJSON_INDENT,
+  stringColor: process.env.PRETTYJSON_STRING
 };
 
 var renderInputJson = function(input){
