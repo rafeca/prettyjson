@@ -1,3 +1,9 @@
+### 0.8.0 — *February 23, 2013*
+
+  * Fix: ENV vars were not being used correctly
+  * Add an option to change the color of the strings
+  * Minor codestyle improvements
+
 ### 0.7.1 — *October 29, 2012*
 
   * Fix bug in 0.7.0 when input is an array
