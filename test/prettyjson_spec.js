@@ -1,13 +1,11 @@
-var prettyjson = process.env.EXPRESS_COV
-  ? require('../lib-cov/prettyjson')
-  : require('../lib/prettyjson');
+var prettyjson = process.env.EXPRESS_COV ? require('../lib-cov/prettyjson') : require('../lib/prettyjson');
 var should = require('should');
 
 describe('prettyjson general tests', function() {
 
   it("should output a string exactly equal as the input", function() {
 
-    var input = 'This is a string'
+    var input = 'This is a string';
     var output = prettyjson.render(input);
 
     output.should.equal(input);
@@ -15,7 +13,7 @@ describe('prettyjson general tests', function() {
 
   it("should output a string with indentation", function() {
 
-    var input = 'This is a string'
+    var input = 'This is a string';
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal('    ' + input);
@@ -42,7 +40,7 @@ describe('prettyjson general tests', function() {
       '- '.green,
       '  ' + '- '.green + input[1][0],
       '  ' + '- '.green + input[1][1],
-      '- '.green + input[2],
+      '- '.green + input[2]
     ].join('\n'));
   });
 
@@ -53,7 +51,7 @@ describe('prettyjson general tests', function() {
 
     output.should.equal([
       'param1: '.green + 'first string',
-      'param2: '.green + 'second string',
+      'param2: '.green + 'second string'
     ].join('\n'));
   });
 
@@ -66,7 +64,7 @@ describe('prettyjson general tests', function() {
       'first_param: '.green,
       '  ' + 'subparam: '.green + ' first string',
       '  ' + 'subparam2: '.green + 'another string',
-      'second_param: '.green + 'second string',
+      'second_param: '.green + 'second string'
     ].join('\n'));
   });
 
@@ -77,7 +75,7 @@ describe('prettyjson general tests', function() {
 
     output.should.equal([
       'very_large_param: '.green + 'first string',
-      'param: '.green + '           second string',
+      'param: '.green + '           second string'
     ].join('\n'));
   });
 
@@ -123,7 +121,7 @@ describe('prettyjson general tests', function() {
 
     output.should.equal([
       'param1: '.blue + 'first string',
-      'param2: '.blue + 'second string',
+      'param2: '.blue + 'second string'
     ].join('\n'));
   });
 
@@ -133,7 +131,7 @@ describe('prettyjson general tests', function() {
 
     output.should.equal([
       'param_long: '.rainbow + 'first string',
-      'param2: '.rainbow + '    second string',
+      'param2: '.rainbow + '    second string'
     ].join('\n'));
   });
 
@@ -144,7 +142,7 @@ describe('prettyjson general tests', function() {
     output.should.equal([
       'param: '.green,
       '    ' + '- '.green + 'first string',
-      '    ' + '- '.green + 'second string',
+      '    ' + '- '.green + 'second string'
     ].join('\n'));
   });
 

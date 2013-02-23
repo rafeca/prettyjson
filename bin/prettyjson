@@ -18,7 +18,7 @@ if (process.argv.length > 2) {
   try {
     renderInputJson(fs.readFileSync(param, 'utf8'));
   } catch (e) {
-    console.log('Error: '.red + "File '" + param + "' does not exist");  
+    console.log('Error: '.red + "File '" + param + "' does not exist");
   }
 } else {
   // Read input stream
@@ -31,7 +31,7 @@ if (process.argv.length > 2) {
     if (chunk === '\n') {
       renderInputJson(streamData);
       streamData = '';
-      return; 
+      return;
     }
     streamData += chunk;
   });
