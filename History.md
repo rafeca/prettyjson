@@ -1,3 +1,8 @@
+### 0.8.1 — *March 11, 2013*
+
+  * Add compatibility for Node.js 0.10.0
+  * Update dependencies
+
 ### 0.8.0 — *February 23, 2013*
 
   * Fix: ENV vars were not being used correctly
