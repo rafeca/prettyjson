@@ -30,9 +30,9 @@
   "devDependencies": {
     "releasetools": "0.4.0",
     "step": "0.0.5",
-    "mocha": "1.6.0",
-    "should": "1.2.0",
-    "jake": "0.5.5",
-    "jshint": "0.9.1"
+    "mocha": "1.8.1",
+    "should": "1.2.2",
+    "jake": "0.5.9",
+    "jshint": "1.1.0"
   }
 }

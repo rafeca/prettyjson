@@ -41,7 +41,7 @@ task("test", function() {
 // Lint task
 desc("execute JSHint checks");
 task("jshint", function() {
-  exec('node_modules/jshint/bin/hint bin/ lib/ --config ".jshint"', function(err, stdout, stderr) {
+  exec('node_modules/jshint/bin/jshint bin/ lib/ --config ".jshint"', function(err, stdout, stderr) {
     if (err) {
       console.log(err);
       fail(err);
