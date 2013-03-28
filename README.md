@@ -1,6 +1,6 @@
 # prettyjson [![Build Status](https://secure.travis-ci.org/rafeca/prettyjson.png)](http://travis-ci.org/rafeca/prettyjson)
 
-Package for formatting JSON data in a coloured YAML-style, perfect for CLI output
+Package for formatting JSON data in a coloured YAML-style, perfect for CLI output.
 
 ## How to install
 
