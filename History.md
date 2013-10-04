@@ -1,3 +1,7 @@
+### 0.9.0 — *October 4, 2013*
+
+  * Checks for hasOwnProperty in function render (by @dlight)
+
 ### 0.8.1 — *March 11, 2013*
 
   * Add compatibility for Node.js 0.10.0

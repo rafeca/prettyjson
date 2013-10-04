@@ -31,8 +31,8 @@
     
     <div id="container">
 
-      <h1>prettyjson <a href="http://travis-ci.org/rafeca/prettyjson"><img src="https://secure.travis-ci.org/rafeca/prettyjson.png" alt="Build Status"></a></h1>
-<p>Package for formatting JSON data in a coloured YAML-style, perfect for CLI output
+      <h1>prettyjson <a href="http://travis-ci.org/rafeca/prettyjson"><img src="https://secure.travis-ci.org/rafeca/prettyjson.png" alt="Build Status"></a> <a href="http://badge.fury.io/js/prettyjson"><img src="https://badge.fury.io/js/prettyjson.png" alt="NPM version"></a></h1>
+<p>Package for formatting JSON data in a coloured YAML-style, perfect for CLI output.
 
 </p>
 <h2>How to install</h2>
@@ -136,12 +136,17 @@ console.log(prettyjson.render(data, {
 
 </p>
 <pre><code class="lang-bash">$ npm test</code></pre>
-<p>You can check the package&#39;s <a href="http://rafeca.com/prettyjson/coverage.html">test coverage</a> if you are one of those test paranoics</p>
+<p>You can check the package&#39;s <a href="http://rafeca.com/prettyjson/coverage.html">test coverage</a> if you are one of those test paranoics
+</p>
 
 
       <h2>Change Log</h2>
       
-      <h3>0.8.1 — <em>March 11, 2013</em></h3>
+      <h3>0.9.0 — <em>October 4, 2013</em></h3>
+<ul>
+<li>Checks for hasOwnProperty in function render (by @dlight)</li>
+</ul>
+<h3>0.8.1 — <em>March 11, 2013</em></h3>
 <ul>
 <li>Add compatibility for Node.js 0.10.0</li>
 <li>Update dependencies</li>
@@ -229,9 +234,10 @@ console.log(prettyjson.render(data, {
       <h2>Contributors</h2>
       
       <ul>
-<li>Rafael de Oleza <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#114;&#97;&#x66;&#x65;&#x63;&#97;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#114;&#97;&#x66;&#x65;&#x63;&#97;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a></li>
-<li>Dave Eddy <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x61;&#118;&#101;&#x40;&#x64;&#97;&#118;&#101;&#x65;&#100;&#x64;&#121;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#118;&#101;&#x40;&#x64;&#97;&#118;&#101;&#x65;&#100;&#x64;&#121;&#46;&#99;&#111;&#109;</a></li>
-<li>jiyinyiyong <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x6a;&#x69;&#x79;&#x69;&#110;&#121;&#105;&#121;&#111;&#110;&#103;&#x40;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#x6a;&#x69;&#x79;&#x69;&#110;&#121;&#105;&#121;&#111;&#110;&#103;&#x40;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a></li>
+<li>Rafael de Oleza <a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x72;&#x61;&#102;&#101;&#99;&#97;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#x72;&#x61;&#102;&#101;&#99;&#97;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a></li>
+<li>Dave Eddy <a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#100;&#x61;&#118;&#x65;&#x40;&#x64;&#97;&#x76;&#101;&#x65;&#x64;&#x64;&#x79;&#46;&#99;&#111;&#x6d;">&#100;&#x61;&#118;&#x65;&#x40;&#x64;&#97;&#x76;&#101;&#x65;&#x64;&#x64;&#x79;&#46;&#99;&#111;&#x6d;</a></li>
+<li>Elias Amaral <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#116;&#111;&#x6c;&#107;&#x69;&#101;&#110;&#x64;&#105;&#108;&#105;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#116;&#111;&#x6c;&#107;&#x69;&#101;&#110;&#x64;&#105;&#108;&#105;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a></li>
+<li>jiyinyiyong <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#106;&#x69;&#121;&#105;&#x6e;&#121;&#105;&#x79;&#x6f;&#110;&#x67;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#106;&#x69;&#121;&#105;&#x6e;&#121;&#105;&#x79;&#x6f;&#110;&#x67;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a></li>
 </ul>
 
 
@@ -304,7 +310,7 @@ me.</p>
       <p>(The MIT License)
 
 </p>
-<p>Copyright (c) 2011 Rafael de Oleza <a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x72;&#x61;&#102;&#101;&#x63;&#x61;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x72;&#x61;&#102;&#101;&#x63;&#x61;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>
+<p>Copyright (c) 2011 Rafael de Oleza <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#114;&#97;&#102;&#x65;&#99;&#x61;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#114;&#97;&#102;&#x65;&#99;&#x61;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a>
 
 </p>
 <p>Permission is hereby granted, free of charge, to any person obtaining
