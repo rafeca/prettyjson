@@ -164,6 +164,21 @@ describe('prettyjson general tests', function() {
       'param2: '.blue + 'second string'.red
     ].join('\n'));
   });
+
+  it("should not print an object prototype", function() {
+    var Input = function() {
+      this.param1 = 'first string';
+      this.param2 = 'second string';
+    };
+    Input.prototype = {randomProperty: 'idontcare'};
+
+    var output = prettyjson.render(new Input);
+
+    output.should.equal([
+      'param1: '.green + 'first string',
+      'param2: '.green + 'second string'
+    ].join('\n'));
+  });
 });
 
 describe('Printing numbers, booleans and other objects', function() {
