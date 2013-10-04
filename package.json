@@ -33,6 +33,7 @@
     "mocha": "1.8.1",
     "should": "1.2.2",
     "jake": "0.5.9",
-    "jshint": "1.1.0"
+    "jshint": "1.1.0",
+    "jscoverage": "0.3.8"
   }
 }

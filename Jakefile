@@ -85,7 +85,7 @@ task("test-cov", function() {
     },
     function(err, stdout, stderr) {
       if (err) throw err;
-      exec('jscoverage lib lib-cov', this);
+      exec('node_modules/jscoverage/bin/jscoverage lib lib-cov', this);
     },
     function(err, stdout, stderr) {
       if (err) throw err;
@@ -163,7 +163,7 @@ namespace('release', function() {
         if (err) fail(err);
         else complete();
       }
-    );  
+    );
   }, true);
 
   // Publish task
