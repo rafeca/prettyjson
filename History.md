@@ -1,3 +1,8 @@
+### 0.10.0 — *December 10, 2013*
+
+  * Add pretty printing of errors (by @mmalecki)
+  * Deprecate Node.js 0.6.x and 0.8.x
+
 ### 0.9.0 — *October 4, 2013*
 
   * Checks for hasOwnProperty in function render (by @dlight)
