@@ -22,10 +22,10 @@
     "prettyjson": "./bin/prettyjson"
   },
   "engines": {
-    "node": ">= 0.6.0 < 0.11.0"
+    "node": ">= 0.10.0 < 0.12.0"
   },
   "dependencies": {
-    "colors": "0.6.0-1"
+    "colors": "0.6.2"
   },
   "devDependencies": {
     "releasetools": "0.4.1",
