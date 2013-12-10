@@ -207,6 +207,20 @@ describe('Printing numbers, booleans and other objects', function() {
 
     output.should.equal('    ' + 'null'.grey);
   });
+
+  it("should print an Error correctly ", function() {
+    Error.stackTraceLimit = 1;
+    var input = new Error('foo');
+    var stack = input.stack.split('\n');
+    var output = prettyjson.render(input, {}, 4);
+
+    output.should.equal([
+      '    ' + 'stack: '.green,
+      '      ' + '- '.green + stack[0],
+      '      ' + '- '.green + stack[1],
+      '    ' + 'message: '.green + '  foo'
+    ].join('\n'));
+  });
 });
 
 describe('prettyjson.renderString() method', function(){
