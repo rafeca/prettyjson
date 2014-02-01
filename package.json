@@ -16,7 +16,8 @@
   },
   "main": "./lib/prettyjson",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter spec"
+    "test": "./node_modules/mocha/bin/mocha --reporter spec",
+    "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec"
   },
   "bin": {
     "prettyjson": "./bin/prettyjson"
