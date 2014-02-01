@@ -125,6 +125,16 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
+  it("should allow to configure colors for numbers", function() {
+    var input = {param1: 17, param2: 22.3};
+    var output = prettyjson.render(input, {numberColor: 'red'});
+
+    output.should.equal([
+      'param1: '.green + '17'.red,
+      'param2: '.green + '22.3'.red
+    ].join('\n'));
+  });
+
   it("should allow to configure rainbow as color", function() {
     var input = {param_long: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'rainbow'});
