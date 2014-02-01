@@ -113,4 +113,10 @@ then run the tests:
 $ npm test
 ```
 
+On windows, you can run the tests with:
+
+```cmd
+C:\git\prettyjson> npm run-script testwin
+```
+
 You can check the package's [test coverage](http://rafeca.com/prettyjson/coverage.html) if you are one of those test paranoics
