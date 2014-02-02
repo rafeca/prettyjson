@@ -1,4 +1,4 @@
-# prettyjson [![Build Status](https://secure.travis-ci.org/rafeca/prettyjson.png)](http://travis-ci.org/rafeca/prettyjson) [![NPM version](https://badge.fury.io/js/prettyjson.png)](http://badge.fury.io/js/prettyjson)
+# prettyjson [![Build Status](https://secure.travis-ci.org/rafeca/prettyjson.png)](http://travis-ci.org/rafeca/prettyjson) [![NPM version](https://badge.fury.io/js/prettyjson.png)](http://badge.fury.io/js/prettyjson) [![Coverage Status](https://coveralls.io/repos/rafeca/prettyjson/badge.png?branch=master)](https://coveralls.io/r/rafeca/prettyjson?branch=master)
 
 Package for formatting JSON data in a coloured YAML-style, perfect for CLI output.
 
