@@ -16,8 +16,9 @@
   },
   "main": "./lib/prettyjson",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter spec",
-    "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec",
+    "jshint": "jshint lib/*.js"
   },
   "bin": {
     "prettyjson": "./bin/prettyjson"
@@ -29,12 +30,9 @@
     "colors": "0.6.2"
   },
   "devDependencies": {
-    "releasetools": "0.4.1",
-    "step": "0.0.5",
     "mocha": "1.8.1",
     "should": "1.2.2",
-    "jake": "0.5.9",
-    "jshint": "1.1.0",
-    "jscoverage": "0.3.8"
+    "jshint": "~2.3.0",
+    "getversion": "~0.1.1"
   }
 }

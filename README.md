@@ -21,7 +21,7 @@ in three different ways:
 $ prettyjson package.json
 ```
 
-![Example 1](http://rafeca.com/prettyjson/images/example3.png)
+![Example 1](images/example3.png)
 
 **Decode the stdin:** You can also pipe the result of a command (for example an HTTP request) to the CLI to see
 the JSON result in a clearer way:
@@ -30,12 +30,12 @@ the JSON result in a clearer way:
 $ curl https://api.github.com/users/rafeca | prettyjson
 ```
 
-![Example 2](http://rafeca.com/prettyjson/images/example4.png)
+![Example 2](images/example4.png)
 
 **Decode random strings:** if you call the CLI with no arguments, you'll get a prompt where you can past JSON strings
 and they'll be automatically displayed in a clearer way:
 
-![Example 3](http://rafeca.com/prettyjson/images/example5.png)
+![Example 3](images/example5.png)
 
 If you install the package globally (with `npm install -g prettyjson`), the CLI will be installed automatically in your PATH
 thanks to npm.
@@ -69,7 +69,7 @@ console.log(prettyjson.render(data));
 
 And will output:
 
-![Example 4](http://rafeca.com/prettyjson/images/example1.png)
+![Example 4](images/example1.png)
 
 You can also configure the colors of the hash keys and array dashes
 (using [colors.js](https://github.com/Marak/colors.js) colors syntax):
@@ -93,18 +93,14 @@ console.log(prettyjson.render(data, {
 
 Will output something like:
 
-![Example 5](http://rafeca.com/prettyjson/images/example2.png)
-
-## Annotated source
-
-You can check the [annotated source](http://rafeca.com/prettyjson/prettyjson.html) for more information about how it works
+![Example 5](images/example2.png)
 
 ## Running Tests
 
 To run the test suite first invoke the following command within the repo, installing the development dependencies:
 
 ```bash
-$ npm install --dev
+$ npm install
 ```
 
 then run the tests:
@@ -118,5 +114,3 @@ On windows, you can run the tests with:
 ```cmd
 C:\git\prettyjson> npm run-script testwin
 ```
-
-You can check the package's [test coverage](http://rafeca.com/prettyjson/coverage.html) if you are one of those test paranoics
