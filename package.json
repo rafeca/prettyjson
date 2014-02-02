@@ -18,7 +18,9 @@
   "scripts": {
     "test": "mocha --reporter spec",
     "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec",
-    "jshint": "jshint lib/*.js"
+    "jshint": "jshint lib/*.js",
+    "coverage": "istanbul cover _mocha --report lcovonly -- -R spec",
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "bin": {
     "prettyjson": "./bin/prettyjson"
@@ -33,6 +35,9 @@
     "mocha": "1.8.1",
     "should": "1.2.2",
     "jshint": "~2.3.0",
-    "getversion": "~0.1.1"
+    "getversion": "~0.1.1",
+    "istanbul": "~0.2.4",
+    "coveralls": "~2.7.0",
+    "mocha-lcov-reporter": "0.0.1"
   }
 }
