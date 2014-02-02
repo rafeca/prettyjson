@@ -20,7 +20,8 @@
     "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec",
     "jshint": "jshint lib/*.js",
     "coverage": "istanbul cover _mocha --report lcovonly -- -R spec",
-    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "changelog": "git log $(git describe --tags --abbrev=0)..HEAD --pretty='* %s' --first-parent"
   },
   "bin": {
     "prettyjson": "./bin/prettyjson"
