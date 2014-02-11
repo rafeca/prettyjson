@@ -231,6 +231,18 @@ describe('Printing numbers, booleans and other objects', function() {
       '    ' + 'message: '.green + '  foo'
     ].join('\n'));
   });
+
+  it('should print serializable items in an array inline', function() {
+    var output = prettyjson.render([ 'a', 3, null, true, false ]);
+
+    output.should.equal([
+      '- '.green + 'a',
+      '- '.green + '3'.blue,
+      '- '.green + 'null'.grey,
+      '- '.green + 'true'.green,
+      '- '.green + 'false'.red
+    ].join('\n'));
+  });
 });
 
 describe('prettyjson.renderString() method', function(){
