@@ -5,7 +5,7 @@ var fs=require('fs');
 var options = {
   keysColor: process.env.PRETTYJSON_KEYS,
   dashColor: process.env.PRETTYJSON_DASH,
-  defaultIndent: process.env.PRETTYJSON_INDENT,
+  defaultIndentation: process.env.PRETTYJSON_INDENT,
   stringColor: process.env.PRETTYJSON_STRING,
   numberColor: process.env.PRETTYJSON_NUMBER
 };
