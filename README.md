@@ -12,10 +12,11 @@ $ npm install prettyjson
 
 ## Using it (from the CLI)
 
-This package installs a command line interface to render JSON data in a more convenient way. You can use the CLI
-in three different ways:
+This package installs a command line interface to render JSON data in a more
+convenient way. You can use the CLI in three different ways:
 
-**Decode a JSON file:** If you want to see the contents of a JSON file, just pass it as the first argument to the CLI:
+**Decode a JSON file:** If you want to see the contents of a JSON file, just pass
+it as the first argument to the CLI:
 
 ```bash
 $ prettyjson package.json
@@ -23,8 +24,8 @@ $ prettyjson package.json
 
 ![Example 1](https://raw.github.com/rafeca/prettyjson/master/images/example3.png)
 
-**Decode the stdin:** You can also pipe the result of a command (for example an HTTP request) to the CLI to see
-the JSON result in a clearer way:
+**Decode the stdin:** You can also pipe the result of a command (for example an
+HTTP request) to the CLI to see the JSON result in a clearer way:
 
 ```bash
 $ curl https://api.github.com/users/rafeca | prettyjson
@@ -32,27 +33,36 @@ $ curl https://api.github.com/users/rafeca | prettyjson
 
 ![Example 2](https://raw.github.com/rafeca/prettyjson/master/images/example4.png)
 
-**Decode random strings:** if you call the CLI with no arguments, you'll get a prompt where you can past JSON strings
-and they'll be automatically displayed in a clearer way:
+**Decode random strings:** if you call the CLI with no arguments, you'll get a
+prompt where you can past JSON strings and they'll be automatically displayed in a clearer way:
 
 ![Example 3](https://raw.github.com/rafeca/prettyjson/master/images/example5.png)
 
-If you install the package globally (with `npm install -g prettyjson`), the CLI will be installed automatically in your PATH
-thanks to npm.
+If you install the package globally (with `npm install -g prettyjson`), the CLI
+will be installed automatically in your PATH thanks to npm.
 
-### Customizing colors via command line
+### Command line options
 
-Now it's possible to customize the colors of the output via environment variables, thanks to @bahamas10:
+It's possible to customize the output through some command line options:
 
 ```bash
-$ PRETTYJSON_KEYS=red PRETTYJSON_DASH=blue PRETTYJSON_STRING=yellow prettyjson package.json
+# Change colors
+$ prettyjson --string=red --keys=blue --dash=yellow --number=green package.json
+
+# Do not use colors
+$ prettyjson --nocolor=1 package.json
+
+# Change indentation
+$ prettyjson --indent=4 package.json
 ```
 
-The available options are `PRETTYJSON_KEYS`, `PRETTYJSON_DASH`, `PRETTYJSON_STRING` and `PRETTYJSON_INDENT`.
+**Deprecation Notice**: The old configuration through environment variables is
+deprecated and it will be removed in the next major version (1.0.0).
 
 ## Using it (from Node.js)
 
-It's pretty easy to use it... you just have to include it in your script and call the `render()` method:
+It's pretty easy to use it. You just have to include it in your script and call
+the `render()` method:
 
 ```javascript
 var prettyjson = require('prettyjson');
@@ -64,7 +74,11 @@ var data = {
   projects: ['prettyprint', 'connfu']
 };
 
-console.log(prettyjson.render(data));
+var options = {
+  noColors: true
+};
+
+console.log(prettyjson.render(data, options));
 ```
 
 And will output:
@@ -97,7 +111,8 @@ Will output something like:
 
 ## Running Tests
 
-To run the test suite first invoke the following command within the repo, installing the development dependencies:
+To run the test suite first invoke the following command within the repo,
+installing the development dependencies:
 
 ```bash
 $ npm install
