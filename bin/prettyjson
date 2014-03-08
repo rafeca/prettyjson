@@ -2,26 +2,29 @@
 
 var prettyjson = require('../lib/prettyjson');
 var fs=require('fs');
+var argv = require('minimist')(process.argv.slice(2));
+
 var options = {
-  keysColor: process.env.PRETTYJSON_KEYS,
-  dashColor: process.env.PRETTYJSON_DASH,
-  defaultIndentation: process.env.PRETTYJSON_INDENT,
-  stringColor: process.env.PRETTYJSON_STRING,
-  numberColor: process.env.PRETTYJSON_NUMBER,
-  noColor: process.env.PRETTYJSON_NOCOLOR
+  keysColor: argv.keys || process.env.PRETTYJSON_KEYS,
+  dashColor: argv.dash || process.env.PRETTYJSON_DASH,
+  defaultIndentation: argv.indent || process.env.PRETTYJSON_INDENT,
+  stringColor: argv.string || process.env.PRETTYJSON_STRING,
+  numberColor: argv.number || process.env.PRETTYJSON_NUMBER,
+  noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR
 };
 
 var renderInputJson = function(input){
   console.log(prettyjson.renderString(input, options));
 };
 
-if (process.argv.length > 2) {
+if (argv._.length) {
   // First parameter is the file to read and parse
-  var param = process.argv[2];
+  var filename = argv._[0];
   try {
-    renderInputJson(fs.readFileSync(param, 'utf8'));
+    renderInputJson(fs.readFileSync(filename, 'utf8'));
   } catch (e) {
-    console.log('Error: '.red + "File '" + param + "' does not exist");
+    console.error('Error: '.red + "File '" + filename + "' does not exist");
+    process.exit(1);
   }
 } else {
   // Read input stream
