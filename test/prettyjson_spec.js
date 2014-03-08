@@ -175,6 +175,17 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
+  it("should allow to not use colors", function() {
+    var input = {param1: 'first string', param2: ['second string']};
+    var output = prettyjson.render(input, {noColor: true});
+
+    output.should.equal([
+      'param1: first string',
+      'param2: ',
+      '  - second string'
+    ].join('\n'));
+  });
+
   it("should not print an object prototype", function() {
     var Input = function() {
       this.param1 = 'first string';
