@@ -75,7 +75,7 @@ var data = {
 };
 
 var options = {
-  noColors: true
+  noColor: true
 };
 
 console.log(prettyjson.render(data, options));
