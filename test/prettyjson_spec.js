@@ -19,6 +19,14 @@ describe('prettyjson general tests', function() {
     output.should.equal('    ' + input);
   });
 
+  it("should output a multiline string with indentation", function() {
+
+    var input = 'multiple\nlines'
+    var output = prettyjson.render(input, {}, 4);
+
+    output.should.equal('    """\n      multiple\n      lines\n    """');
+  });
+
   it("should output an array of strings", function() {
 
     var input = ['first string', 'second string'];
