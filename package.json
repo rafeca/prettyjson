@@ -16,7 +16,7 @@
   },
   "main": "./lib/prettyjson",
   "scripts": {
-    "test": "mocha --reporter spec",
+    "test": "npm run jshint && mocha --reporter spec",
     "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec",
     "jshint": "jshint lib/*.js",
     "coverage": "istanbul cover _mocha --report lcovonly -- -R spec",
