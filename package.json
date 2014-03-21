@@ -34,12 +34,12 @@
     "minimist": "0.0.8"
   },
   "devDependencies": {
-    "mocha": "1.8.1",
-    "should": "1.2.2",
-    "jshint": "~2.3.0",
+    "mocha": "^1.18.2",
+    "should": "^3.1.4",
+    "jshint": "^2.4.4",
     "getversion": "~0.1.1",
     "istanbul": "~0.2.4",
-    "coveralls": "~2.7.0",
+    "coveralls": "^2.10.0",
     "mocha-lcov-reporter": "0.0.1"
   }
 }
