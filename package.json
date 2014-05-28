@@ -14,6 +14,9 @@
     "type": "git",
     "url": "https://github.com/rafeca/prettyjson.git"
   },
+  "bugs": {
+    "url": "https://github.com/rafeca/prettyjson/issues"
+  },
   "main": "./lib/prettyjson",
   "scripts": {
     "test": "npm run jshint && mocha --reporter spec",
