@@ -7,8 +7,11 @@ Package for formatting JSON data in a coloured YAML-style, perfect for CLI outpu
 Just install it via NPM:
 
 ```bash
-$ npm install prettyjson
+$ npm install -g prettyjson
 ```
+
+This will install `prettyjson` globally, so it will be added automatically
+to your `PATH`.
 
 ## Using it (from the CLI)
 
@@ -37,9 +40,6 @@ $ curl https://api.github.com/users/rafeca | prettyjson
 prompt where you can past JSON strings and they'll be automatically displayed in a clearer way:
 
 ![Example 3](https://raw.github.com/rafeca/prettyjson/master/images/example5.png)
-
-If you install the package globally (with `npm install -g prettyjson`), the CLI
-will be installed automatically in your PATH thanks to npm.
 
 ### Command line options
 
