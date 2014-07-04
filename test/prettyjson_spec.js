@@ -194,6 +194,23 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
+  it("should allow to print simple arrays inline", function() {
+    var input = {installs: ['first string', 'second string', false, 13]};
+    var output = prettyjson.render(input, {inlineArrays: true});
+
+    output.should.equal(
+      'installs: '.green + 'first string, second string, false, 13');
+
+    input = {installs: [ ['first string', 'second string'], 'third string']};
+    output = prettyjson.render(input, {inlineArrays: true});
+
+    output.should.equal([
+      'installs: '.green,
+      '  ' + '- '.green + 'first string, second string',
+      '  ' + '- '.green + 'third string'
+      ].join('\n'));
+  });
+
   it("should not print an object prototype", function() {
     var Input = function() {
       this.param1 = 'first string';

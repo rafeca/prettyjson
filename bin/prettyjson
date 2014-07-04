@@ -10,7 +10,8 @@ var options = {
   defaultIndentation: argv.indent || process.env.PRETTYJSON_INDENT,
   stringColor: argv.string || process.env.PRETTYJSON_STRING,
   numberColor: argv.number || process.env.PRETTYJSON_NUMBER,
-  noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR
+  noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR,
+  inlineArrays: argv['inline-arrays'] || process.env.PRETTYJSON_INLINE_ARRAYS
 };
 
 var renderInputJson = function(input){
