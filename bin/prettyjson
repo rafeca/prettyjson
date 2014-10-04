@@ -11,7 +11,8 @@ var options = {
   stringColor: argv.string || process.env.PRETTYJSON_STRING,
   numberColor: argv.number || process.env.PRETTYJSON_NUMBER,
   noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR,
-  inlineArrays: argv['inline-arrays'] || process.env.PRETTYJSON_INLINE_ARRAYS
+  inlineArrays: argv['inline-arrays'] || process.env.PRETTYJSON_INLINE_ARRAYS,
+  noWrapping: argv.nowrapping || process.env.NO_LINE_WRAPPING
 };
 
 var renderInputJson = function(input){
