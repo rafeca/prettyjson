@@ -269,15 +269,41 @@ describe('Printing numbers, booleans and other objects', function() {
   });
 
   it('should print serializable items in an array inline', function() {
-    var output = prettyjson.render([ 'a', 3, null, true, false ]);
+	var dt = new Date();
+    var output = prettyjson.render([ 'a', 3, null, true, false, dt]);
 
     output.should.equal([
       '- '.green + 'a',
       '- '.green + '3'.blue,
       '- '.green + 'null'.grey,
       '- '.green + 'true'.green,
-      '- '.green + 'false'.red
+      '- '.green + 'false'.red,
+	  '- '.green + dt
     ].join('\n'));
+  });
+  
+  it('should print dates correctly', function() {
+	var input = new Date();
+	var expected = input.toString();	
+	var output = prettyjson.render(input, {}, 4);
+	
+	output.should.equal('    ' + expected);
+  });
+  
+  it('should print dates in objects correctly', function() {
+	var dt1 = new Date();
+	var dt2 = new Date();
+	
+	var input = { 		
+		dt1: dt2,
+		dt2: dt2
+	};	
+	
+	var output = prettyjson.render(input, {}, 4);
+		
+	output.should.equal([
+		'    ' + 'dt1: '.green + dt1.toString(),
+		'    ' + 'dt2: '.green + dt2.toString()].join('\n'));
   });
 });
 
