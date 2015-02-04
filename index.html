@@ -29,21 +29,23 @@
       </header>
       <section>
         <h1>
-<a name="prettyjson---" class="anchor" href="#prettyjson---"><span class="octicon octicon-link"></span></a>prettyjson <a href="http://travis-ci.org/rafeca/prettyjson"><img src="https://secure.travis-ci.org/rafeca/prettyjson.png" alt="Build Status"></a> <a href="http://badge.fury.io/js/prettyjson"><img src="https://badge.fury.io/js/prettyjson.png" alt="NPM version"></a> <a href="https://coveralls.io/r/rafeca/prettyjson?branch=master"><img src="https://coveralls.io/repos/rafeca/prettyjson/badge.png?branch=master" alt="Coverage Status"></a>
+<a id="prettyjson---" class="anchor" href="#prettyjson---" aria-hidden="true"><span class="octicon octicon-link"></span></a>prettyjson <a href="http://travis-ci.org/rafeca/prettyjson"><img src="https://secure.travis-ci.org/rafeca/prettyjson.png" alt="Build Status"></a> <a href="http://badge.fury.io/js/prettyjson"><img src="https://badge.fury.io/js/prettyjson.png" alt="NPM version"></a> <a href="https://coveralls.io/r/rafeca/prettyjson?branch=master"><img src="https://coveralls.io/repos/rafeca/prettyjson/badge.png?branch=master" alt="Coverage Status"></a>
 </h1>
 
 <p>Package for formatting JSON data in a coloured YAML-style, perfect for CLI output.</p>
 
 <h2>
-<a name="how-to-install" class="anchor" href="#how-to-install"><span class="octicon octicon-link"></span></a>How to install</h2>
+<a id="how-to-install" class="anchor" href="#how-to-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install</h2>
 
 <p>Just install it via NPM:</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install prettyjson
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ npm install -g prettyjson</pre></div>
+
+<p>This will install <code>prettyjson</code> globally, so it will be added automatically
+to your <code>PATH</code>.</p>
 
 <h2>
-<a name="using-it-from-the-cli" class="anchor" href="#using-it-from-the-cli"><span class="octicon octicon-link"></span></a>Using it (from the CLI)</h2>
+<a id="using-it-from-the-cli" class="anchor" href="#using-it-from-the-cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using it (from the CLI)</h2>
 
 <p>This package installs a command line interface to render JSON data in a more
 convenient way. You can use the CLI in three different ways:</p>
@@ -51,16 +53,14 @@ convenient way. You can use the CLI in three different ways:</p>
 <p><strong>Decode a JSON file:</strong> If you want to see the contents of a JSON file, just pass
 it as the first argument to the CLI:</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>prettyjson package.json
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ prettyjson package.json</pre></div>
 
 <p><img src="https://raw.github.com/rafeca/prettyjson/master/images/example3.png" alt="Example 1"></p>
 
 <p><strong>Decode the stdin:</strong> You can also pipe the result of a command (for example an
 HTTP request) to the CLI to see the JSON result in a clearer way:</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>curl https://api.github.com/users/rafeca <span class="p">|</span> prettyjson
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ curl https://api.github.com/users/rafeca <span class="pl-k">|</span> prettyjson</pre></div>
 
 <p><img src="https://raw.github.com/rafeca/prettyjson/master/images/example4.png" alt="Example 2"></p>
 
@@ -69,48 +69,43 @@ prompt where you can past JSON strings and they'll be automatically displayed in
 
 <p><img src="https://raw.github.com/rafeca/prettyjson/master/images/example5.png" alt="Example 3"></p>
 
-<p>If you install the package globally (with <code>npm install -g prettyjson</code>), the CLI
-will be installed automatically in your PATH thanks to npm.</p>
-
 <h3>
-<a name="command-line-options" class="anchor" href="#command-line-options"><span class="octicon octicon-link"></span></a>Command line options</h3>
+<a id="command-line-options" class="anchor" href="#command-line-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command line options</h3>
 
 <p>It's possible to customize the output through some command line options:</p>
 
-<div class="highlight highlight-bash"><pre><span class="c"># Change colors</span>
-<span class="nv">$ </span>prettyjson --string<span class="o">=</span>red --keys<span class="o">=</span>blue --dash<span class="o">=</span>yellow --number<span class="o">=</span>green package.json
+<div class="highlight highlight-bash"><pre><span class="pl-c"># Change colors</span>
+$ prettyjson --string=red --keys=blue --dash=yellow --number=green package.json
 
-<span class="c"># Do not use colors</span>
-<span class="nv">$ </span>prettyjson --nocolor<span class="o">=</span>1 package.json
+<span class="pl-c"># Do not use colors</span>
+$ prettyjson --nocolor=1 package.json
 
-<span class="c"># Change indentation</span>
-<span class="nv">$ </span>prettyjson --indent<span class="o">=</span>4 package.json
-</pre></div>
+<span class="pl-c"># Change indentation</span>
+$ prettyjson --indent=4 package.json</pre></div>
 
 <p><strong>Deprecation Notice</strong>: The old configuration through environment variables is
 deprecated and it will be removed in the next major version (1.0.0).</p>
 
 <h2>
-<a name="using-it-from-nodejs" class="anchor" href="#using-it-from-nodejs"><span class="octicon octicon-link"></span></a>Using it (from Node.js)</h2>
+<a id="using-it-from-nodejs" class="anchor" href="#using-it-from-nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using it (from Node.js)</h2>
 
 <p>It's pretty easy to use it. You just have to include it in your script and call
 the <code>render()</code> method:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">prettyjson</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'prettyjson'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> prettyjson <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>prettyjson<span class="pl-pds">'</span></span>);
 
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">username</span><span class="o">:</span> <span class="s1">'rafeca'</span><span class="p">,</span>
-  <span class="nx">url</span><span class="o">:</span> <span class="s1">'https://github.com/rafeca'</span><span class="p">,</span>
-  <span class="nx">twitter_account</span><span class="o">:</span> <span class="s1">'https://twitter.com/rafeca'</span><span class="p">,</span>
-  <span class="nx">projects</span><span class="o">:</span> <span class="p">[</span><span class="s1">'prettyprint'</span><span class="p">,</span> <span class="s1">'connfu'</span><span class="p">]</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> data <span class="pl-k">=</span> {
+  username<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>rafeca<span class="pl-pds">'</span></span>,
+  url<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>https://github.com/rafeca<span class="pl-pds">'</span></span>,
+  twitter_account<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>https://twitter.com/rafeca<span class="pl-pds">'</span></span>,
+  projects<span class="pl-k">:</span> [<span class="pl-s1"><span class="pl-pds">'</span>prettyprint<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>connfu<span class="pl-pds">'</span></span>]
+};
 
-<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">noColor</span><span class="o">:</span> <span class="kc">true</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> options <span class="pl-k">=</span> {
+  noColor<span class="pl-k">:</span> <span class="pl-c1">true</span>
+};
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prettyjson</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">));</span>
-</pre></div>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(prettyjson.render(data, options));</pre></div>
 
 <p>And will output:</p>
 
@@ -119,44 +114,40 @@ the <code>render()</code> method:</p>
 <p>You can also configure the colors of the hash keys and array dashes
 (using <a href="https://github.com/Marak/colors.js">colors.js</a> colors syntax):</p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">prettyjson</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'prettyjson'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> prettyjson <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>prettyjson<span class="pl-pds">'</span></span>);
 
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">username</span><span class="o">:</span> <span class="s1">'rafeca'</span><span class="p">,</span>
-  <span class="nx">url</span><span class="o">:</span> <span class="s1">'https://github.com/rafeca'</span><span class="p">,</span>
-  <span class="nx">twitter_account</span><span class="o">:</span> <span class="s1">'https://twitter.com/rafeca'</span><span class="p">,</span>
-  <span class="nx">projects</span><span class="o">:</span> <span class="p">[</span><span class="s1">'prettyprint'</span><span class="p">,</span> <span class="s1">'connfu'</span><span class="p">]</span>
-<span class="p">};</span>
+<span class="pl-s">var</span> data <span class="pl-k">=</span> {
+  username<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>rafeca<span class="pl-pds">'</span></span>,
+  url<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>https://github.com/rafeca<span class="pl-pds">'</span></span>,
+  twitter_account<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>https://twitter.com/rafeca<span class="pl-pds">'</span></span>,
+  projects<span class="pl-k">:</span> [<span class="pl-s1"><span class="pl-pds">'</span>prettyprint<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>connfu<span class="pl-pds">'</span></span>]
+};
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prettyjson</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
-  <span class="nx">keysColor</span><span class="o">:</span> <span class="s1">'rainbow'</span><span class="p">,</span>
-  <span class="nx">dashColor</span><span class="o">:</span> <span class="s1">'magenta'</span><span class="p">,</span>
-  <span class="nx">stringColor</span><span class="o">:</span> <span class="s1">'white'</span>
-<span class="p">}));</span>
-</pre></div>
+<span class="pl-en">console</span><span class="pl-s3">.log</span>(prettyjson.render(data, {
+  keysColor<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>rainbow<span class="pl-pds">'</span></span>,
+  dashColor<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>magenta<span class="pl-pds">'</span></span>,
+  stringColor<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>white<span class="pl-pds">'</span></span>
+}));</pre></div>
 
 <p>Will output something like:</p>
 
 <p><img src="https://raw.github.com/rafeca/prettyjson/master/images/example2.png" alt="Example 5"></p>
 
 <h2>
-<a name="running-tests" class="anchor" href="#running-tests"><span class="octicon octicon-link"></span></a>Running Tests</h2>
+<a id="running-tests" class="anchor" href="#running-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Tests</h2>
 
 <p>To run the test suite first invoke the following command within the repo,
 installing the development dependencies:</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ npm install</pre></div>
 
 <p>then run the tests:</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm <span class="nb">test</span>
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ npm <span class="pl-s3">test</span></pre></div>
 
 <p>On windows, you can run the tests with:</p>
 
-<div class="highlight highlight-cmd"><pre>C:\git\prettyjson<span class="p">&gt;</span> <span class="n">npm</span> run-script testwin
-</pre></div>
+<div class="highlight highlight-cmd"><pre>C:\git\prettyjson<span class="pl-k">&gt;</span> npm run-script testwin</pre></div>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/rafeca">rafeca</a></p>
