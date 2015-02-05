@@ -54,6 +54,9 @@ $ prettyjson --nocolor=1 package.json
 
 # Change indentation
 $ prettyjson --indent=4 package.json
+
+# Render arrays elements in a single line
+$ prettyjson --inline-arrays=1 package.json
 ```
 
 **Deprecation Notice**: The old configuration through environment variables is
