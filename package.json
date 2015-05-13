@@ -2,7 +2,7 @@
   "author": "Rafael de Oleza <rafeca@gmail.com> (https://github.com/rafeca)",
   "name": "prettyjson",
   "description": "Package for formatting JSON data in a coloured YAML-style, perfect for CLI output",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "http://rafeca.com/prettyjson",
   "keywords": [
     "json",
