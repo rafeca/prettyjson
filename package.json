@@ -18,6 +18,7 @@
     "url": "https://github.com/rafeca/prettyjson/issues"
   },
   "main": "./lib/prettyjson",
+  "license": "MIT",
   "scripts": {
     "test": "npm run jshint && mocha --reporter spec",
     "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec",
