@@ -281,26 +281,26 @@ describe('Printing numbers, booleans and other objects', function() {
 	  '- '.green + dt
     ].join('\n'));
   });
-  
+
   it('should print dates correctly', function() {
 	var input = new Date();
-	var expected = input.toString();	
+	var expected = input.toString();
 	var output = prettyjson.render(input, {}, 4);
-	
+
 	output.should.equal('    ' + expected);
   });
-  
+
   it('should print dates in objects correctly', function() {
 	var dt1 = new Date();
 	var dt2 = new Date();
-	
-	var input = { 		
+
+	var input = {
 		dt1: dt2,
 		dt2: dt2
-	};	
-	
+	};
+
 	var output = prettyjson.render(input, {}, 4);
-		
+
 	output.should.equal([
 		'    ' + 'dt1: '.green + dt1.toString(),
 		'    ' + 'dt2: '.green + dt2.toString()].join('\n'));
