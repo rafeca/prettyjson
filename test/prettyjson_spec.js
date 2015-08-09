@@ -264,7 +264,7 @@ describe('Printing numbers, booleans and other objects', function() {
       '    ' + 'stack: '.green,
       '      ' + '- '.green + stack[0],
       '      ' + '- '.green + stack[1],
-      '    ' + 'message: '.green + '  foo'
+      '    ' + 'message: '.green + 'foo'
     ].join('\n'));
   });
 
