@@ -30,9 +30,6 @@
   "bin": {
     "prettyjson": "./bin/prettyjson"
   },
-  "engines": {
-    "node": ">= 0.10.0 < 0.13.0"
-  },
   "dependencies": {
     "colors": "0.6.2",
     "minimist": "1.1.0"
