@@ -346,3 +346,33 @@ describe('prettyjson.renderString() method', function(){
     output.should.equal('test: '.green + 'OK'.red);
   });
 });
+
+describe('Colors Validation', function(){
+  it('should output the string with default scheme if invalid colors are provided', function(){
+    var input = {param1: 'first string', param2: 'second string'};
+    var output = prettyjson.render(input, {keysColor: 'orange', stringColor: 'pink'});
+
+    output.should.equal([
+      'param1: '.green + 'first string',
+      'param2: '.green + 'second string'
+    ].join('\n'));
+  });
+
+  it('should output the number with default scheme if invalid colors are provided', function(){
+    var input = {param1: 17, param2: 22.3};
+    var output = prettyjson.render(input, {numberColor: 'pink'});
+
+    output.should.equal([
+      'param1: '.green + '17'.blue,
+      'param2: '.green + '22.3'.blue
+    ].join('\n'));
+  });
+
+  it('should output the number with default scheme if invalid colors are provided', function(){
+    var input = {param1: ['pretty']};
+    var output = prettyjson.render(input, {dashColor: 'pink'});
+    
+    output.should.equal('param1: '.green +'\n  '+ '- '.green + 'pretty');
+
+  });
+});
