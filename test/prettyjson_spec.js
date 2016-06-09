@@ -87,6 +87,17 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
+  it("should allow to disable values aligning with longest index", function() {
+
+    var input = {very_large_param: 'first string', param: 'second string'};
+    var output = prettyjson.render(input, {noAlign: true});
+
+    output.should.equal([
+      'very_large_param: '.green + 'first string',
+      'param: '.green + 'second string'
+    ].join('\n'));
+  });
+
   it("should output a really nested object", function() {
 
     var input = {

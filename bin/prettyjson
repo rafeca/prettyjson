@@ -11,6 +11,7 @@ var options = {
   stringColor: argv.string || process.env.PRETTYJSON_STRING,
   numberColor: argv.number || process.env.PRETTYJSON_NUMBER,
   noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR,
+  noAlign: argv['noalign'] || process.env.PRETTYJSON_NOALIGN,
   inlineArrays: argv['inline-arrays'] || process.env.PRETTYJSON_INLINE_ARRAYS
 };
 
