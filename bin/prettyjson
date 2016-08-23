@@ -2,6 +2,7 @@
 
 var prettyjson = require('../lib/prettyjson');
 var fs=require('fs');
+var colors = require('colors/safe');
 var argv = require('minimist')(process.argv.slice(2));
 
 var options = {
@@ -24,7 +25,7 @@ if (argv._.length) {
   try {
     renderInputJson(fs.readFileSync(filename, 'utf8'));
   } catch (e) {
-    console.error('Error: '.red + "File '" + filename + "' does not exist");
+    console.error(colors.red('Error: ') + "File '" + filename + "' does not exist");
     process.exit(1);
   }
 } else {
