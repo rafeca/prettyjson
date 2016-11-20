@@ -281,7 +281,7 @@ describe('Printing numbers, booleans and other objects', function() {
   });
 
   it('should print serializable items in an array inline', function() {
-	var dt = new Date();
+    var dt = new Date();
     var output = prettyjson.render([ 'a', 3, null, true, false, dt]);
 
     output.should.equal([
@@ -290,33 +290,33 @@ describe('Printing numbers, booleans and other objects', function() {
       colors.green('- ') + colors.grey('null'),
       colors.green('- ') + colors.green('true'),
       colors.green('- ') + colors.red('false'),
-	  colors.green('- ') + dt
+    colors.green('- ') + dt
     ].join('\n'));
   });
 
   it('should print dates correctly', function() {
-	var input = new Date();
-	var expected = input.toString();
-	var output = prettyjson.render(input, {}, 4);
+    var input = new Date();
+    var expected = input.toString();
+    var output = prettyjson.render(input, {}, 4);
 
-	output.should.equal('    ' + expected);
+    output.should.equal('    ' + expected);
   });
 
   it('should print dates in objects correctly', function() {
-	var dt1 = new Date();
-	var dt2 = new Date();
+    var dt1 = new Date();
+    var dt2 = new Date();
 
-	var input = {
-		dt1: dt2,
-		dt2: dt2
-	};
+    var input = {
+      dt1: dt2,
+      dt2: dt2
+    };
 
-	var output = prettyjson.render(input, {}, 4);
+    var output = prettyjson.render(input, {}, 4);
 
-	output.should.equal([
-		'    ' + colors.green('dt1: ') + dt1.toString(),
-		'    ' + colors.green('dt2: ') + dt2.toString()].join('\n'));
-  });
+    output.should.equal([
+      '    ' + colors.green('dt1: ') + dt1.toString(),
+      '    ' + colors.green('dt2: ') + dt2.toString()].join('\n'));
+    });
 });
 
 describe('prettyjson.renderString() method', function(){
