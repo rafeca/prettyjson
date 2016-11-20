@@ -1,35 +1,36 @@
-var prettyjson = process.env.EXPRESS_COV ? require('../lib-cov/prettyjson') : require('../lib/prettyjson');
-var should = require('should');
+'use strict';
+
+require('should');
+var prettyjson = process.env.EXPRESS_COV
+  ? require('../lib-cov/prettyjson')
+  : require('../lib/prettyjson');
+
 var colors = require('colors/safe');
 
 describe('prettyjson general tests', function() {
 
-  it("should output a string exactly equal as the input", function() {
-
+  it('should output a string exactly equal as the input', function() {
     var input = 'This is a string';
     var output = prettyjson.render(input);
 
     output.should.equal(input);
   });
 
-  it("should output a string with indentation", function() {
-
+  it('should output a string with indentation', function() {
     var input = 'This is a string';
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal('    ' + input);
   });
 
-  it("should output a multiline string with indentation", function() {
-
-    var input = 'multiple\nlines'
+  it('should output a multiline string with indentation', function() {
+    var input = 'multiple\nlines';
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal('    """\n      multiple\n      lines\n    """');
   });
 
-  it("should output an array of strings", function() {
-
+  it('should output an array of strings', function() {
     var input = ['first string', 'second string'];
     var output = prettyjson.render(input);
 
@@ -39,8 +40,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should output an array of arrays", function() {
-
+  it('should output an array of arrays', function() {
     var input = ['first string', ['nested 1', 'nested 2'], 'second string'];
     var output = prettyjson.render(input);
 
@@ -53,8 +53,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should output a hash of strings", function() {
-
+  it('should output a hash of strings', function() {
     var input = {param1: 'first string', param2: 'second string'};
     var output = prettyjson.render(input);
 
@@ -64,78 +63,78 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should output a hash of hashes", function() {
-
-    var input = {first_param: {subparam: 'first string', subparam2: 'another string'}, second_param: 'second string'};
+  it('should output a hash of hashes', function() {
+    var input = {
+      firstParam: {subparam: 'first string', subparam2: 'another string'},
+      secondParam: 'second string'
+    };
     var output = prettyjson.render(input);
 
     output.should.equal([
-      colors.green('first_param: '),
+      colors.green('firstParam: '),
       '  ' + colors.green('subparam: ') + ' first string',
       '  ' + colors.green('subparam2: ') + 'another string',
-      colors.green('second_param: ') + 'second string'
+      colors.green('secondParam: ') + 'second string'
     ].join('\n'));
   });
 
-  it("should indent correctly the hashes keys", function() {
+  it('should indent correctly the hashes keys', function() {
 
-    var input = {very_large_param: 'first string', param: 'second string'};
+    var input = {veryLargeParam: 'first string', param: 'second string'};
     var output = prettyjson.render(input);
 
     output.should.equal([
-      colors.green('very_large_param: ') + 'first string',
-      colors.green('param: ') + '           second string'
+      colors.green('veryLargeParam: ') + 'first string',
+      colors.green('param: ') + '         second string'
     ].join('\n'));
   });
 
-  it("should allow to disable values aligning with longest index", function() {
-
-    var input = {very_large_param: 'first string', param: 'second string'};
+  it('should allow to disable values aligning with longest index', function() {
+    var input = {veryLargeParam: 'first string', param: 'second string'};
     var output = prettyjson.render(input, {noAlign: true});
 
     output.should.equal([
-      colors.green('very_large_param: ') + 'first string',
+      colors.green('veryLargeParam: ') + 'first string',
       colors.green('param: ') + 'second string'
     ].join('\n'));
   });
 
-  it("should output a really nested object", function() {
-
+  it('should output a really nested object', function() {
     var input = {
-      first_param: {
+      firstParam: {
         subparam: 'first string',
         subparam2: 'another string',
-        subparam3: ["different", "values", "in an array"]
+        subparam3: ['different', 'values', 'in an array']
       },
-      second_param: 'second string',
-      an_array: [{
+      secondParam: 'second string',
+      anArray: [{
         param3: 'value',
         param10: 'other value'
       }],
-      empty_array: []
+      emptyArray: []
     };
 
     var output = prettyjson.render(input);
 
     output.should.equal([
-      colors.green('first_param: '),
+      colors.green('firstParam: '),
       '  ' + colors.green('subparam: ') + ' first string',
       '  ' + colors.green('subparam2: ') + 'another string',
       '  ' + colors.green('subparam3: '),
       '    ' + colors.green('- ') + 'different',
       '    ' + colors.green('- ') + 'values',
       '    ' + colors.green('- ') + 'in an array',
-      colors.green('second_param: ') + 'second string',
-      colors.green('an_array: '),
+      colors.green('secondParam: ') + 'second string',
+      colors.green('anArray: '),
       '  ' + colors.green('- '),
       '    ' + colors.green('param3: ') + ' value',
       '    ' + colors.green('param10: ') + 'other value',
-      colors.green('empty_array: '),
+      colors.green('emptyArray: '),
       '  (empty array)'
     ].join('\n'));
   });
 
-  it("should allow to configure colors for hash keys", function() {
+  it('should allow to configure colors for hash keys', function() {
     var input = {param1: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'blue'});
 
@@ -145,7 +144,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should allow to configure colors for numbers", function() {
+  it('should allow to configure colors for numbers', function() {
     var input = {param1: 17, param2: 22.3};
     var output = prettyjson.render(input, {numberColor: 'red'});
 
@@ -155,18 +154,18 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should allow to configure rainbow as color", function() {
-    var input = {param_long: 'first string', param2: 'second string'};
+  it('should allow to configure rainbow as color', function() {
+    var input = {paramLong: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'rainbow'});
 
     output.should.equal([
-      colors.rainbow('param_long: ') + 'first string',
-      colors.rainbow('param2: ') + '    second string'
+      colors.rainbow('paramLong: ') + 'first string',
+      colors.rainbow('param2: ') + '   second string'
     ].join('\n'));
   });
 
-  it("should allow to configure the default indentation", function() {
-    var input = {param: ['first string', "second string"]};
+  it('should allow to configure the default indentation', function() {
+    var input = {param: ['first string', 'second string']};
     var output = prettyjson.render(input, {defaultIndentation: 4});
 
     output.should.equal([
@@ -176,7 +175,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should allow to configure the empty message for arrays", function() {
+  it('should allow to configure the empty message for arrays', function() {
     var input = [];
     var output = prettyjson.render(input, {emptyArrayMsg: '(empty)'});
 
@@ -185,9 +184,12 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should allow to configure colors for strings", function() {
+  it('should allow to configure colors for strings', function() {
     var input = {param1: 'first string', param2: 'second string'};
-    var output = prettyjson.render(input, {keysColor: 'blue', stringColor: 'red'});
+    var output = prettyjson.render(
+      input,
+      {keysColor: 'blue', stringColor: 'red'}
+    );
 
     output.should.equal([
       colors.blue('param1: ') + colors.red('first string'),
@@ -195,7 +197,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should allow to not use colors", function() {
+  it('should allow to not use colors', function() {
     var input = {param1: 'first string', param2: ['second string']};
     var output = prettyjson.render(input, {noColor: true});
 
@@ -206,7 +208,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it("should allow to print simple arrays inline", function() {
+  it('should allow to print simple arrays inline', function() {
     var input = {installs: ['first string', 'second string', false, 13]};
     var output = prettyjson.render(input, {inlineArrays: true});
 
@@ -220,17 +222,17 @@ describe('prettyjson general tests', function() {
       colors.green('installs: '),
       '  ' + colors.green('- ') + 'first string, second string',
       '  ' + colors.green('- ') + 'third string'
-      ].join('\n'));
+    ].join('\n'));
   });
 
-  it("should not print an object prototype", function() {
+  it('should not print an object prototype', function() {
     var Input = function() {
       this.param1 = 'first string';
       this.param2 = 'second string';
     };
     Input.prototype = {randomProperty: 'idontcare'};
 
-    var output = prettyjson.render(new Input);
+    var output = prettyjson.render(new Input());
 
     output.should.equal([
       colors.green('param1: ') + 'first string',
@@ -240,14 +242,14 @@ describe('prettyjson general tests', function() {
 });
 
 describe('Printing numbers, booleans and other objects', function() {
-  it("should print numbers correctly ", function() {
+  it('should print numbers correctly ', function() {
     var input = 12345;
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal('    ' + colors.blue('12345'));
   });
 
-  it("should print booleans correctly ", function() {
+  it('should print booleans correctly ', function() {
     var input = true;
     var output = prettyjson.render(input, {}, 4);
 
@@ -259,14 +261,14 @@ describe('Printing numbers, booleans and other objects', function() {
     output.should.equal('    ' + colors.red('false'));
   });
 
-  it("should print a null object correctly ", function() {
+  it('should print a null object correctly ', function() {
     var input = null;
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal('    ' + colors.grey('null'));
   });
 
-  it("should print an Error correctly ", function() {
+  it('should print an Error correctly ', function() {
     Error.stackTraceLimit = 1;
     var input = new Error('foo');
     var stack = input.stack.split('\n');
@@ -290,7 +292,7 @@ describe('Printing numbers, booleans and other objects', function() {
       colors.green('- ') + colors.grey('null'),
       colors.green('- ') + colors.green('true'),
       colors.green('- ') + colors.red('false'),
-    colors.green('- ') + dt
+      colors.green('- ') + dt
     ].join('\n'));
   });
 
@@ -315,12 +317,13 @@ describe('Printing numbers, booleans and other objects', function() {
 
     output.should.equal([
       '    ' + colors.green('dt1: ') + dt1.toString(),
-      '    ' + colors.green('dt2: ') + dt2.toString()].join('\n'));
-    });
+      '    ' + colors.green('dt2: ') + dt2.toString()
+    ].join('\n'));
+  });
 });
 
-describe('prettyjson.renderString() method', function(){
-  it('should return an empty string if input is empty', function(){
+describe('prettyjson.renderString() method', function() {
+  it('should return an empty string if input is empty', function() {
     var input = '';
 
     var output = prettyjson.renderString(input);
@@ -328,33 +331,56 @@ describe('prettyjson.renderString() method', function(){
     output.should.equal('');
   });
 
-  it('should return an empty string if input is not a string', function(){
+  it('should return an empty string if input is not a string', function() {
     var output = prettyjson.renderString({});
     output.should.equal('');
   });
 
-  it('should return an error message if the input is an invalid JSON string', function(){
-    var output = prettyjson.renderString('not valid!!');
-    output.should.equal(colors.red('Error:') + ' Not valid JSON!');
+  it(
+    'should return an error message if the input is an invalid JSON string',
+    function() {
+      var output = prettyjson.renderString('not valid!!');
+      output.should.equal(colors.red('Error:') + ' Not valid JSON!');
+    }
+  );
+
+  it(
+    'should return the prettyfied string if it is a valid JSON string',
+    function() {
+      var output = prettyjson.renderString('{"test": "OK"}');
+      output.should.equal(colors.green('test: ') + 'OK');
+    }
+  );
+
+  it('should dismiss trailing characters which are not JSON', function() {
+    var output = prettyjson.renderString(
+      'characters that are not JSON at all... {"test": "OK"}'
+    );
+    output.should.equal(
+      'characters that are not JSON at all... \n' +
+      colors.green('test: ') +
+      'OK'
+    );
   });
 
-  it('should return the prettyfied string if it is a valid JSON string', function(){
-    var output = prettyjson.renderString('{"test": "OK"}');
-    output.should.equal(colors.green('test: ') + 'OK');
-  });
+  it(
+    'should dismiss trailing characters which are not JSON with an array',
+    function() {
+      var output = prettyjson.renderString(
+        'characters that are not JSON at all... ["test"]'
+      );
+      output.should.equal(
+        'characters that are not JSON at all... \n' +
+        colors.green('- ') +
+        'test'
+      );
+    }
+  );
 
-  it('should dismiss trailing characters which are not JSON', function(){
-    var output = prettyjson.renderString('characters that are not JSON at all... {"test": "OK"}');
-    output.should.equal("characters that are not JSON at all... \n" + colors.green('test: ') + 'OK');
-  });
-
-  it('should dismiss trailing characters which are not JSON with an array', function(){
-    var output = prettyjson.renderString('characters that are not JSON at all... ["test"]');
-    output.should.equal("characters that are not JSON at all... \n" + colors.green('- ') + 'test');
-  });
-
-  it('should be able to accept the options parameter', function(){
-    var output = prettyjson.renderString('{"test": "OK"}', {stringColor: 'red'});
+  it('should be able to accept the options parameter', function() {
+    var output = prettyjson.renderString(
+      '{"test": "OK"}', {stringColor: 'red'}
+    );
     output.should.equal(colors.green('test: ') + colors.red('OK'));
   });
 });

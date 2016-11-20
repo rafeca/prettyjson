@@ -22,7 +22,7 @@
   "scripts": {
     "test": "npm run jshint && mocha --reporter spec",
     "testwin": "node ./node_modules/mocha/bin/mocha --reporter spec",
-    "jshint": "jshint lib/*.js",
+    "jshint": "jshint lib/*.js test/*.js",
     "coverage": "istanbul cover _mocha --report lcovonly -- -R spec",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "changelog": "git log $(git describe --tags --abbrev=0)..HEAD --pretty='* %s' --first-parent"
