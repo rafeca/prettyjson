@@ -1,5 +1,6 @@
 var prettyjson = process.env.EXPRESS_COV ? require('../lib-cov/prettyjson') : require('../lib/prettyjson');
 var should = require('should');
+var colors = require('colors/safe');
 
 describe('prettyjson general tests', function() {
 
@@ -33,8 +34,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input);
 
     output.should.equal([
-      '- '.green + input[0],
-      '- '.green + input[1]
+      colors.green('- ') + input[0],
+      colors.green('- ') + input[1]
     ].join('\n'));
   });
 
@@ -44,11 +45,11 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input);
 
     output.should.equal([
-      '- '.green + input[0],
-      '- '.green,
-      '  ' + '- '.green + input[1][0],
-      '  ' + '- '.green + input[1][1],
-      '- '.green + input[2]
+      colors.green('- ') + input[0],
+      colors.green('- '),
+      '  ' + colors.green('- ') + input[1][0],
+      '  ' + colors.green('- ') + input[1][1],
+      colors.green('- ') + input[2]
     ].join('\n'));
   });
 
@@ -58,8 +59,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input);
 
     output.should.equal([
-      'param1: '.green + 'first string',
-      'param2: '.green + 'second string'
+      colors.green('param1: ') + 'first string',
+      colors.green('param2: ') + 'second string'
     ].join('\n'));
   });
 
@@ -69,10 +70,10 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input);
 
     output.should.equal([
-      'first_param: '.green,
-      '  ' + 'subparam: '.green + ' first string',
-      '  ' + 'subparam2: '.green + 'another string',
-      'second_param: '.green + 'second string'
+      colors.green('first_param: '),
+      '  ' + colors.green('subparam: ') + ' first string',
+      '  ' + colors.green('subparam2: ') + 'another string',
+      colors.green('second_param: ') + 'second string'
     ].join('\n'));
   });
 
@@ -82,8 +83,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input);
 
     output.should.equal([
-      'very_large_param: '.green + 'first string',
-      'param: '.green + '           second string'
+      colors.green('very_large_param: ') + 'first string',
+      colors.green('param: ') + '           second string'
     ].join('\n'));
   });
 
@@ -106,19 +107,19 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input);
 
     output.should.equal([
-      'first_param: '.green,
-      '  ' + 'subparam: '.green + ' first string',
-      '  ' + 'subparam2: '.green + 'another string',
-      '  ' + 'subparam3: '.green,
-      '    ' + '- '.green + 'different',
-      '    ' + '- '.green + 'values',
-      '    ' + '- '.green + 'in an array',
-      'second_param: '.green + 'second string',
-      'an_array: '.green,
-      '  ' + '- '.green,
-      '    ' + 'param3: '.green + ' value',
-      '    ' + 'param10: '.green + 'other value',
-      'empty_array: '.green,
+      colors.green('first_param: '),
+      '  ' + colors.green('subparam: ') + ' first string',
+      '  ' + colors.green('subparam2: ') + 'another string',
+      '  ' + colors.green('subparam3: '),
+      '    ' + colors.green('- ') + 'different',
+      '    ' + colors.green('- ') + 'values',
+      '    ' + colors.green('- ') + 'in an array',
+      colors.green('second_param: ') + 'second string',
+      colors.green('an_array: '),
+      '  ' + colors.green('- '),
+      '    ' + colors.green('param3: ') + ' value',
+      '    ' + colors.green('param10: ') + 'other value',
+      colors.green('empty_array: '),
       '  (empty array)'
     ].join('\n'));
   });
@@ -128,8 +129,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input, {keysColor: 'blue'});
 
     output.should.equal([
-      'param1: '.blue + 'first string',
-      'param2: '.blue + 'second string'
+      colors.blue('param1: ') + 'first string',
+      colors.blue('param2: ') + 'second string'
     ].join('\n'));
   });
 
@@ -138,8 +139,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input, {numberColor: 'red'});
 
     output.should.equal([
-      'param1: '.green + '17'.red,
-      'param2: '.green + '22.3'.red
+      colors.green('param1: ') + colors.red('17'),
+      colors.green('param2: ') + colors.red('22.3')
     ].join('\n'));
   });
 
@@ -148,8 +149,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input, {keysColor: 'rainbow'});
 
     output.should.equal([
-      'param_long: '.rainbow + 'first string',
-      'param2: '.rainbow + '    second string'
+      colors.rainbow('param_long: ') + 'first string',
+      colors.rainbow('param2: ') + '    second string'
     ].join('\n'));
   });
 
@@ -158,9 +159,9 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input, {defaultIndentation: 4});
 
     output.should.equal([
-      'param: '.green,
-      '    ' + '- '.green + 'first string',
-      '    ' + '- '.green + 'second string'
+      colors.green('param: '),
+      '    ' + colors.green('- ') + 'first string',
+      '    ' + colors.green('- ') + 'second string'
     ].join('\n'));
   });
 
@@ -178,8 +179,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input, {keysColor: 'blue', stringColor: 'red'});
 
     output.should.equal([
-      'param1: '.blue + 'first string'.red,
-      'param2: '.blue + 'second string'.red
+      colors.blue('param1: ') + colors.red('first string'),
+      colors.blue('param2: ') + colors.red('second string')
     ].join('\n'));
   });
 
@@ -199,15 +200,15 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input, {inlineArrays: true});
 
     output.should.equal(
-      'installs: '.green + 'first string, second string, false, 13');
+      colors.green('installs: ') + 'first string, second string, false, 13');
 
     input = {installs: [ ['first string', 'second string'], 'third string']};
     output = prettyjson.render(input, {inlineArrays: true});
 
     output.should.equal([
-      'installs: '.green,
-      '  ' + '- '.green + 'first string, second string',
-      '  ' + '- '.green + 'third string'
+      colors.green('installs: '),
+      '  ' + colors.green('- ') + 'first string, second string',
+      '  ' + colors.green('- ') + 'third string'
       ].join('\n'));
   });
 
@@ -221,8 +222,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(new Input);
 
     output.should.equal([
-      'param1: '.green + 'first string',
-      'param2: '.green + 'second string'
+      colors.green('param1: ') + 'first string',
+      colors.green('param2: ') + 'second string'
     ].join('\n'));
   });
 });
@@ -232,26 +233,26 @@ describe('Printing numbers, booleans and other objects', function() {
     var input = 12345;
     var output = prettyjson.render(input, {}, 4);
 
-    output.should.equal('    ' + '12345'.blue);
+    output.should.equal('    ' + colors.blue('12345'));
   });
 
   it("should print booleans correctly ", function() {
     var input = true;
     var output = prettyjson.render(input, {}, 4);
 
-    output.should.equal('    ' + 'true'.green);
+    output.should.equal('    ' + colors.green('true'));
 
     input = false;
     output = prettyjson.render(input, {}, 4);
 
-    output.should.equal('    ' + 'false'.red);
+    output.should.equal('    ' + colors.red('false'));
   });
 
   it("should print a null object correctly ", function() {
     var input = null;
     var output = prettyjson.render(input, {}, 4);
 
-    output.should.equal('    ' + 'null'.grey);
+    output.should.equal('    ' + colors.grey('null'));
   });
 
   it("should print an Error correctly ", function() {
@@ -261,10 +262,10 @@ describe('Printing numbers, booleans and other objects', function() {
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal([
-      '    ' + 'stack: '.green,
-      '      ' + '- '.green + stack[0],
-      '      ' + '- '.green + stack[1],
-      '    ' + 'message: '.green + 'foo'
+      '    ' + colors.green('stack: '),
+      '      ' + colors.green('- ') + stack[0],
+      '      ' + colors.green('- ') + stack[1],
+      '    ' + colors.green('message: ') + 'foo'
     ].join('\n'));
   });
 
@@ -273,12 +274,12 @@ describe('Printing numbers, booleans and other objects', function() {
     var output = prettyjson.render([ 'a', 3, null, true, false, dt]);
 
     output.should.equal([
-      '- '.green + 'a',
-      '- '.green + '3'.blue,
-      '- '.green + 'null'.grey,
-      '- '.green + 'true'.green,
-      '- '.green + 'false'.red,
-	  '- '.green + dt
+      colors.green('- ') + 'a',
+      colors.green('- ') + colors.blue('3'),
+      colors.green('- ') + colors.grey('null'),
+      colors.green('- ') + colors.green('true'),
+      colors.green('- ') + colors.red('false'),
+	  colors.green('- ') + dt
     ].join('\n'));
   });
 
@@ -302,8 +303,8 @@ describe('Printing numbers, booleans and other objects', function() {
 	var output = prettyjson.render(input, {}, 4);
 
 	output.should.equal([
-		'    ' + 'dt1: '.green + dt1.toString(),
-		'    ' + 'dt2: '.green + dt2.toString()].join('\n'));
+		'    ' + colors.green('dt1: ') + dt1.toString(),
+		'    ' + colors.green('dt2: ') + dt2.toString()].join('\n'));
   });
 });
 
@@ -323,26 +324,26 @@ describe('prettyjson.renderString() method', function(){
 
   it('should return an error message if the input is an invalid JSON string', function(){
     var output = prettyjson.renderString('not valid!!');
-    output.should.equal('Error:'.red + ' Not valid JSON!');
+    output.should.equal(colors.red('Error:') + ' Not valid JSON!');
   });
 
   it('should return the prettyfied string if it is a valid JSON string', function(){
     var output = prettyjson.renderString('{"test": "OK"}');
-    output.should.equal('test: '.green + 'OK');
+    output.should.equal(colors.green('test: ') + 'OK');
   });
 
   it('should dismiss trailing characters which are not JSON', function(){
     var output = prettyjson.renderString('characters that are not JSON at all... {"test": "OK"}');
-    output.should.equal("characters that are not JSON at all... \n" + 'test: '.green + 'OK');
+    output.should.equal("characters that are not JSON at all... \n" + colors.green('test: ') + 'OK');
   });
 
   it('should dismiss trailing characters which are not JSON with an array', function(){
     var output = prettyjson.renderString('characters that are not JSON at all... ["test"]');
-    output.should.equal("characters that are not JSON at all... \n" + '- '.green + 'test');
+    output.should.equal("characters that are not JSON at all... \n" + colors.green('- ') + 'test');
   });
 
   it('should be able to accept the options parameter', function(){
     var output = prettyjson.renderString('{"test": "OK"}', {stringColor: 'red'});
-    output.should.equal('test: '.green + 'OK'.red);
+    output.should.equal(colors.green('test: ') + colors.red('OK'));
   });
 });
