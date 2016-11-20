@@ -273,10 +273,10 @@ describe('Printing numbers, booleans and other objects', function() {
     var output = prettyjson.render(input, {}, 4);
 
     output.should.equal([
+      '    ' + colors.green('message: ') + 'foo',
       '    ' + colors.green('stack: '),
       '      ' + colors.green('- ') + stack[0],
       '      ' + colors.green('- ') + stack[1],
-      '    ' + colors.green('message: ') + 'foo'
     ].join('\n'));
   });
 
