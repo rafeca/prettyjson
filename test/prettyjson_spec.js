@@ -94,8 +94,8 @@ describe('prettyjson general tests', function() {
     var output = prettyjson.render(input, {noAlign: true});
 
     output.should.equal([
-      'very_large_param: '.green + 'first string',
-      'param: '.green + 'second string'
+      colors.green('very_large_param: ') + 'first string',
+      colors.green('param: ') + 'second string'
     ].join('\n'));
   });
 
