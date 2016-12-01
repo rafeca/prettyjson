@@ -40,6 +40,16 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
+  it('should output a function', function() {
+    var input = ['first string', function(a) { return a;}];
+    var output = prettyjson.render(input);
+
+    output.should.equal([
+      colors.green('- ') + input[0],
+      colors.green('- ') + 'function() {}',
+    ].join('\n'));
+  });
+
   it('should output an array of arrays', function() {
     var input = ['first string', ['nested 1', 'nested 2'], 'second string'];
     var output = prettyjson.render(input);
