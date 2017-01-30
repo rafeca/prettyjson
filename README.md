@@ -57,6 +57,9 @@ $ prettyjson --indent=4 package.json
 
 # Render arrays elements in a single line
 $ prettyjson --inline-arrays=1 package.json
+
+# Render with extra characters ({[,"]}) to be able to copy the string
+$ prettyjson --copyable=1 package.json
 ```
 
 **Deprecation Notice**: The old configuration through environment variables is
