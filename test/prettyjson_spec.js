@@ -249,6 +249,70 @@ describe('prettyjson general tests', function() {
       colors.green('param2: ') + 'second string'
     ].join('\n'));
   });
+
+  it('should be a valid JSON with `copyable` option, and noColor', function() {
+    var input = {
+      hash: '4UFPklvxRgcCSg==',
+      Url: 'https:///update.jsp',
+      Banner: false,
+      Reason: null,
+      List: [
+        {
+          unknown: true,
+          eDesc: 'Cxxxx',
+          e: 'xxx',
+          Name: null,
+          Id: null
+        },
+        {
+          a: {
+            b: [
+              {
+                c: {
+                  j: [1,2],
+                  f: [0,1],
+                  g: ['singleItem']
+                }
+              },
+              null
+            ]
+          }
+        }
+      ],
+      ams: {
+        dec: {
+          a: 0.25,
+          b: 1.27
+        },
+        neg: {
+          a: -12,
+          b: -243.00
+        },
+        str: {
+          a: '',
+          b: 'hello world'
+        }
+      },
+      errors: [
+        'a', 'b', 'c'
+      ],
+      errorss: [0,1,2],
+      a1: {
+        a2: {
+          a3: true
+        },
+        b1: true
+      }
+    };
+    var valid = true;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    try {
+      JSON.parse(output);
+    } catch(e) {
+      valid = false;
+    }
+    valid.should.equal(true);
+  });
 });
 
 describe('Copyable option on (and colors off to ease the tests)' +
@@ -422,6 +486,133 @@ describe('Copyable option on (and colors off to ease the tests)' +
       '     "second string"',
       '  ],',
       '  "param2": "first string"',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a big ass complex object', function() {
+    var input = {
+      hash: '4UFPklvxRgcCSg==',
+      Url: 'https:///update.jsp',
+      Banner: false,
+      Reason: null,
+      List: [
+        {
+          unknown: true,
+          eDesc: 'Cxxxx',
+          e: 'xxx',
+          Name: null,
+          Id: null
+        },
+        {
+          a: {
+            b: [
+              {
+                c: {
+                  j: [1,2],
+                  f: [0,1],
+                  g: ['singleItem']
+                }
+              },
+              null
+            ]
+          }
+        }
+      ],
+      ams: {
+        dec: {
+          a: 0.25,
+          b: 1.27
+        },
+        neg: {
+          a: -12,
+          b: -243.00
+        },
+        str: {
+          a: '',
+          b: 'hello world'
+        }
+      },
+      errors: [
+        'a', 'b', 'c'
+      ],
+      errorss: [0,1,2],
+      a1: {
+        a2: {
+          a3: true
+        },
+        b1: true
+      }
+    };
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "hash":    "4UFPklvxRgcCSg==",',
+      '  "Url":     "https:///update.jsp",',
+      '  "Banner":  false,',
+      '  "Reason":  null,',
+      '  "List": [',
+      '     {',
+      '      "unknown": true,',
+      '      "eDesc":   "Cxxxx",',
+      '      "e":       "xxx",',
+      '      "Name":    null,',
+      '      "Id":      null',
+      '    },',
+      '     {',
+      '      "a": {',
+      '        "b": [',
+      '           {',
+      '            "c": {',
+      '              "j": [',
+      '                 1,',
+      '                 2',
+      '              ],',
+      '              "f": [',
+      '                 0,',
+      '                 1',
+      '              ],',
+      '              "g": [',
+      '                 "singleItem"',
+      '              ]',
+      '            }',
+      '          },',
+      '           null',
+      '        ]',
+      '      }',
+      '    }',
+      '  ],',
+      '  "ams": {',
+      '    "dec": {',
+      '      "a": 0.25,',
+      '      "b": 1.27',
+      '    },',
+      '    "neg": {',
+      '      "a": -12,',
+      '      "b": -243',
+      '    },',
+      '    "str": {',
+      '      "a": "",',
+      '      "b": "hello world"',
+      '    }',
+      '  },',
+      '  "errors": [',
+      '     "a",',
+      '     "b",',
+      '     "c"',
+      '  ],',
+      '  "errorss": [',
+      '     0,',
+      '     1,',
+      '     2',
+      '  ],',
+      '  "a1": {',
+      '    "a2": {',
+      '      "a3": true',
+      '    },',
+      '    "b1": true',
+      '  }',
       '}'
     ].join('\n'));
   });
