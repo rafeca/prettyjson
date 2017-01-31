@@ -261,9 +261,9 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"param1": "first string",',
-      '"param2": "second string",',
-      '"param3": "third string"',
+      '  "param1": "first string",',
+      '  "param2": "second string",',
+      '  "param3": "third string"',
       '}'
     ].join('\n'));
   });
@@ -276,9 +276,9 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"param1": 1,',
-      '"param2": 2,',
-      '"param3": 3',
+      '  "param1": 1,',
+      '  "param2": 2,',
+      '  "param3": 3',
       '}'
     ].join('\n'));
   });
@@ -291,9 +291,9 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"param1": null,',
-      '"param2": null,',
-      '"param3": null',
+      '  "param1": null,',
+      '  "param2": null,',
+      '  "param3": null',
       '}'
     ].join('\n'));
   });
@@ -306,9 +306,9 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"param1": true,',
-      '"param2": false,',
-      '"param3": true',
+      '  "param1": true,',
+      '  "param2": false,',
+      '  "param3": true',
       '}'
     ].join('\n'));
   });
@@ -340,7 +340,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '[',
-      ' "first string"',
+      '   "first string"',
       ']'
     ].join('\n'));
   });
@@ -351,9 +351,9 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '[',
-      ' "first string",',
-      ' "second string",',
-      ' "third string"',
+      '   "first string",',
+      '   "second string",',
+      '   "third string"',
       ']'
     ].join('\n'));
   });
@@ -364,9 +364,9 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"a": [',
-      '   "as"',
-      ']',
+      '  "a": [',
+      '     "as"',
+      '  ]',
       '}'
     ].join('\n'));
   });
@@ -377,9 +377,25 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"a": {',
-      '  "a": 1',
-      '}',
+      '  "a": {',
+      '    "a": 1',
+      '  }',
+      '}'
+    ].join('\n'));
+  });
+
+  it('an object of an object of an object with an null', function() {
+    var input = { a: {a: {a: 1}, b: null} } ;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "a": {',
+      '    "a": {',
+      '      "a": 1',
+      '    },',
+      '    "b": null',
+      '  }',
       '}'
     ].join('\n'));
   });
@@ -390,8 +406,8 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"param1": "first string",',
-      '"param2": 2',
+      '  "param1": "first string",',
+      '  "param2": 2',
       '}'
     ].join('\n'));
   });
@@ -402,10 +418,10 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
     output.should.equal([
       '{',
-      '"param1": [',
-      '   "second string"',
-      '],',
-      '"param2": "first string",',
+      '  "param1": [',
+      '     "second string"',
+      '  ],',
+      '  "param2": "first string"',
       '}'
     ].join('\n'));
   });
