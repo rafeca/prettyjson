@@ -268,6 +268,72 @@ describe('Copyable option on (and colors off to ease the tests)' +
     ].join('\n'));
   });
 
+  it('three numbers', function() {
+    var input = {
+      param1: 1, param2: 2, param3: 3
+    };
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"param1": 1,',
+      '"param2": 2,',
+      '"param3": 3',
+      '}'
+    ].join('\n'));
+  });
+
+  it('three nulls', function() {
+    var input = {
+      param1: null, param2: null, param3: null
+    };
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"param1": null,',
+      '"param2": null,',
+      '"param3": null',
+      '}'
+    ].join('\n'));
+  });
+
+  it('three booleans', function() {
+    var input = {
+      param1: true, param2: false, param3: true
+    };
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"param1": true,',
+      '"param2": false,',
+      '"param3": true',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a string', function() {
+    var input = 'string';
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal('"string"');
+  });
+
+  it('a boolean', function() {
+    var input = false;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal('false');
+  });
+
+  it('a number', function() {
+    var input = 1;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal('1');
+  });
+
   it('a singleton array of strings', function() {
     var input = ['first string'] ;
     var output = prettyjson.render(input, {copyable: true, noColor: true});
@@ -289,6 +355,32 @@ describe('Copyable option on (and colors off to ease the tests)' +
       ' "second string",',
       ' "third string"',
       ']'
+    ].join('\n'));
+  });
+
+  it('an object of a singleton array', function() {
+    var input = { a: ['as'] } ;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"a": [',
+      '   "as"',
+      ']',
+      '}'
+    ].join('\n'));
+  });
+
+  it('an object of a object', function() {
+    var input = { a: {a: 1} } ;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"a": {',
+      '  "a": 1',
+      '}',
+      '}'
     ].join('\n'));
   });
 
