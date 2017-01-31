@@ -251,6 +251,74 @@ describe('prettyjson general tests', function() {
   });
 });
 
+describe('Copyable option on (and colors off to ease the tests)' +
+', testing JSON valid when printing', function() {
+  it('three strings', function() {
+    var input = {
+      param1: 'first string', param2: 'second string', param3: 'third string'
+    };
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"param1": "first string",',
+      '"param2": "second string",',
+      '"param3": "third string"',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a singleton array of strings', function() {
+    var input = ['first string'] ;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '[',
+      ' "first string"',
+      ']'
+    ].join('\n'));
+  });
+
+  it('an array of strings', function() {
+    var input = ['first string', 'second string', 'third string'] ;
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '[',
+      ' "first string",',
+      ' "second string",',
+      ' "third string"',
+      ']'
+    ].join('\n'));
+  });
+
+  it('a string and number', function() {
+    var input = {param1: 'first string', param2: 2};
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"param1": "first string",',
+      '"param2": 2',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a array and an string', function() {
+    var input = {param1: ['second string'], param2: 'first string'};
+    var output = prettyjson.render(input, {copyable: true, noColor: true});
+
+    output.should.equal([
+      '{',
+      '"param1": [',
+      '   "second string"',
+      '],',
+      '"param2": "first string",',
+      '}'
+    ].join('\n'));
+  });
+});
+
 describe('Printing numbers, booleans and other objects', function() {
   it('should print numbers correctly ', function() {
     var input = 12345;
