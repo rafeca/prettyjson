@@ -305,7 +305,7 @@ describe('prettyjson general tests', function() {
       }
     };
     var valid = true;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
     try {
       JSON.parse(output);
     } catch(e) {
@@ -321,7 +321,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
     var input = {
       param1: 'first string', param2: 'second string', param3: 'third string'
     };
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -336,7 +336,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
     var input = {
       param1: 1, param2: 2, param3: 3
     };
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -351,7 +351,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
     var input = {
       param1: null, param2: null, param3: null
     };
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -366,7 +366,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
     var input = {
       param1: true, param2: false, param3: true
     };
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -379,28 +379,28 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
   it('a string', function() {
     var input = 'string';
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal('"string"');
   });
 
   it('a boolean', function() {
     var input = false;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal('false');
   });
 
   it('a number', function() {
     var input = 1;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal('1');
   });
 
   it('a singleton array of strings', function() {
     var input = ['first string'] ;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '[',
@@ -411,7 +411,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
   it('an array of strings', function() {
     var input = ['first string', 'second string', 'third string'] ;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '[',
@@ -424,7 +424,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
   it('an object of a singleton array', function() {
     var input = { a: ['as'] } ;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -437,7 +437,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
   it('an object of a object', function() {
     var input = { a: {a: 1} } ;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -450,7 +450,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
   it('an object of an object of an object with an null', function() {
     var input = { a: {a: {a: 1}, b: null} } ;
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -466,7 +466,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
   it('a string and number', function() {
     var input = {param1: 'first string', param2: 2};
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -478,7 +478,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
 
   it('a array and an string', function() {
     var input = {param1: ['second string'], param2: 'first string'};
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
@@ -544,7 +544,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
         b1: true
       }
     };
-    var output = prettyjson.render(input, {copyable: true, noColor: true});
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
       '{',
