@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 require('should');
@@ -5,10 +6,10 @@ var prettyjson = process.env.EXPRESS_COV
   ? require('../lib-cov/prettyjson')
   : require('../lib/prettyjson');
 
-var colors = require('colors/safe');
+// var colors = require('colors/safe');
 
+/*
 describe('prettyjson general tests', function() {
-
   it('should output a string exactly equal as the input', function() {
     var input = 'This is a string';
     var output = prettyjson.render(input);
@@ -314,6 +315,7 @@ describe('prettyjson general tests', function() {
     valid.should.equal(true);
   });
 });
+*/
 
 describe('Copyable option on (and colors off to ease the tests)' +
 ', testing JSON valid when printing', function() {
@@ -449,7 +451,12 @@ describe('Copyable option on (and colors off to ease the tests)' +
   });
 
   it('an object of an object of an object with an null', function() {
-    var input = { a: {a: {a: 1}, b: null} } ;
+    var input = {
+      a: {
+        a: {a: 1},
+        b: null
+      }
+    };
     var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
     output.should.equal([
@@ -618,6 +625,7 @@ describe('Copyable option on (and colors off to ease the tests)' +
   });
 });
 
+/*
 describe('Printing numbers, booleans and other objects', function() {
   it('should print numbers correctly ', function() {
     var input = 12345;
@@ -761,3 +769,4 @@ describe('prettyjson.renderString() method', function() {
     output.should.equal(colors.green('test: ') + colors.red('OK'));
   });
 });
+*/
