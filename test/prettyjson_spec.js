@@ -250,7 +250,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it('should be a valid JSON with `copyable` option, and noColor', function() {
+  it('should be a valid JSON with format copyable, and noColor', function() {
     var input = {
       hash: '4UFPklvxRgcCSg==',
       Url: 'https:///update.jsp',
@@ -314,7 +314,132 @@ describe('prettyjson general tests', function() {
     valid.should.equal(true);
   });
 
-  it('should avoid the (empty array) message with `copyable` option',
+  it('should be a valid JSON with format path, and noColor', function() {
+    var input = {
+      hash: '4UFPklvxRgcCSg==',
+      Url: 'https:///update.jsp',
+      Banner: false,
+      Reason: null,
+      List: [
+        {
+          unknown: true,
+          eDesc: 'Cxxxx',
+          e: 'xxx',
+          Name: null,
+          Id: null
+        },
+        {
+          a: {
+            b: [
+              {
+                c: {
+                  j: [1,2],
+                  f: [0,1],
+                  g: ['singleItem']
+                }
+              },
+              null
+            ]
+          }
+        }
+      ],
+      ams: {
+        dec: {
+          a: 0.25,
+          b: 1.27
+        },
+        neg: {
+          a: -12,
+          b: -243.00
+        },
+        str: {
+          a: '',
+          b: 'hello world'
+        }
+      },
+      errors: [
+        'a', 'b', 'c'
+      ],
+      errorss: [0,1,2],
+      a1: {
+        a2: {
+          a3: true
+        },
+        b1: true
+      }
+    };
+    var valid = true;
+    var output = prettyjson.render(input, {format: 'path', noColor: true});
+    try {
+      JSON.parse(output);
+    } catch(e) {
+      valid = false;
+    }
+    valid.should.equal(true);
+  });
+
+  it('should output a path with format path, and noColor', function() {
+    var input = {
+      hash: '4UFPklvxRgcCSg==',
+      Url: 'https:///update.jsp',
+      Banner: false,
+      Reason: null,
+      ams: {
+        dec: {
+          a: 0.25,
+          b: 1.27
+        },
+        neg: {
+          a: -12,
+          b: -243.00
+        },
+        str: {
+          a: '',
+          b: 'hello world'
+        }
+      },
+      errors: [
+        'a', 'b', 'c'
+      ],
+      errorss: [0,1,2],
+      a1: {
+        a2: {
+          a3: true
+        },
+        b1: true
+      }
+    };
+    var output = prettyjson.render(input, {format: 'path', noColor: true});
+
+    output.should.equal([
+      '{',
+      '"hash":      "4UFPklvxRgcCSg==",',
+      '"Url":       "https:///update.jsp",',
+      '"Banner":    false,',
+      '"Reason":    null,',
+      '"ams.dec.a": 0.25,',
+      '"ams.dec.b": 1.27,',
+      '"ams.neg.a": -12,',
+      '"ams.neg.b": -243,',
+      '"ams.str.a": "",',
+      '"ams.str.b": "hello world",',
+      '"errors": [',
+      '   "a",',
+      '   "b",',
+      '   "c"',
+      '],',
+      '"errorss": [',
+      '   0,',
+      '   1,',
+      '   2',
+      '],',
+      '"a1.a2.a3":  true,',
+      '"a1.b1":     true',
+      '}'
+    ].join('\n'));
+  });
+
+  it('should avoid the (empty array) message with format copyable',
   function() {
     var input = { List: [ ], };
     var output = prettyjson.render(input, {format: 'copyable', noColor: true});
@@ -326,7 +451,7 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
-  it('should print "{}" for empty object, with `copyable` option', function() {
+  it('should print "{}" for empty object, with format copyable', function() {
     var input = { obj: {} };
     var output = prettyjson.render(input, {format: 'copyable', noColor: true});
 
