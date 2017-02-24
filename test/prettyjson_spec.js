@@ -380,61 +380,17 @@ describe('prettyjson general tests', function() {
 
   it('should output a path with format path, and noColor', function() {
     var input = {
-      hash: '4UFPklvxRgcCSg==',
-      Url: 'https:///update.jsp',
-      Banner: false,
-      Reason: null,
       ams: {
-        dec: {
-          a: 0.25,
-          b: 1.27
-        },
         neg: {
-          a: -12,
-          b: -243.00
-        },
-        str: {
-          a: '',
           b: 'hello world'
-        }
-      },
-      errors: [
-        'a', 'b', 'c'
-      ],
-      errorss: [0,1,2],
-      a1: {
-        a2: {
-          a3: true
         },
-        b1: true
       }
     };
     var output = prettyjson.render(input, {format: 'path', noColor: true});
 
     output.should.equal([
       '{',
-      '"hash":      "4UFPklvxRgcCSg==",',
-      '"Url":       "https:///update.jsp",',
-      '"Banner":    false,',
-      '"Reason":    null,',
-      '"ams.dec.a": 0.25,',
-      '"ams.dec.b": 1.27,',
-      '"ams.neg.a": -12,',
-      '"ams.neg.b": -243,',
-      '"ams.str.a": "",',
-      '"ams.str.b": "hello world",',
-      '"errors": [',
-      '   "a",',
-      '   "b",',
-      '   "c"',
-      '],',
-      '"errorss": [',
-      '   0,',
-      '   1,',
-      '   2',
-      '],',
-      '"a1.a2.a3":  true,',
-      '"a1.b1":     true',
+      '"ams.neg.b": "hello world"',
       '}'
     ].join('\n'));
   });
