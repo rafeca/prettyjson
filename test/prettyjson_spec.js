@@ -313,6 +313,29 @@ describe('prettyjson general tests', function() {
     }
     valid.should.equal(true);
   });
+
+  it('should avoid the (empty array) message with `copyable` option',
+  function() {
+    var input = { List: [ ], };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "List": []',
+      '}'
+    ].join('\n'));
+  });
+
+  it('should print "{}" for empty object, with `copyable` option', function() {
+    var input = { obj: {} };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "obj": {}',
+      '}'
+    ].join('\n'));
+  });
 });
 
 describe('Copyable option on (and colors off to ease the tests)' +
@@ -618,6 +641,25 @@ describe('Copyable option on (and colors off to ease the tests)' +
       '    },',
       '    "b1": true',
       '  }',
+      '}'
+    ].join('\n'));
+  });
+
+  it('an array of objects', function() {
+    var input = {
+      List: [
+        {},
+        {}
+      ]
+    };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "List": [',
+      '     {},',
+      '     {}',
+      '  ]',
       '}'
     ].join('\n'));
   });
