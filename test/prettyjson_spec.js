@@ -30,6 +30,13 @@ describe('prettyjson general tests', function() {
     output.should.equal('    """\n      multiple\n      lines\n    """');
   });
 
+  it('should output a escaped string if have conflict chars', function () {
+    var input = '#irchannel';
+    var output = prettyjson.render(input, {}, 4);
+
+    output.should.equal('    "#irchannel"');
+  });
+
   it('should output an array of strings', function() {
     var input = ['first string', 'second string'];
     var output = prettyjson.render(input);
@@ -282,7 +289,9 @@ describe('Printing numbers, booleans and other objects', function() {
     Error.stackTraceLimit = 1;
     var input = new Error('foo');
     var stack = input.stack.split('\n');
-    var output = prettyjson.render(input, {}, 4);
+    var output = prettyjson.render(input, {
+        noEscape: true,
+    }, 4);
 
     output.should.equal([
       '    ' + colors.green('message: ') + 'foo',

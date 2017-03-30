@@ -13,6 +13,7 @@ var options = {
   numberColor: argv.number || process.env.PRETTYJSON_NUMBER,
   noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR,
   noAlign: argv['noalign'] || process.env.PRETTYJSON_NOALIGN,
+  noEscape argv['noescape'] || process.env.PRETTYJSON_NOESCAPE,
   inlineArrays: argv['inline-arrays'] || process.env.PRETTYJSON_INLINE_ARRAYS
 };
 
