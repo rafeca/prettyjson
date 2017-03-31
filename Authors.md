@@ -1,2 +1,2 @@
-Go to the [https://github.com/rafeca/prettyjson/graphs/contributors](GitHub contributors graph page)
+Go to the [GitHub contributors graph page](https://github.com/rafeca/prettyjson/graphs/contributors)
 to see the list of contributors.
