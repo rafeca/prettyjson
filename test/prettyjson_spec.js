@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 require('should');
@@ -8,7 +9,6 @@ var prettyjson = process.env.EXPRESS_COV
 var colors = require('colors/safe');
 
 describe('prettyjson general tests', function() {
-
   it('should output a string exactly equal as the input', function() {
     var input = 'This is a string';
     var output = prettyjson.render(input);
@@ -247,6 +247,378 @@ describe('prettyjson general tests', function() {
     output.should.equal([
       colors.green('param1: ') + 'first string',
       colors.green('param2: ') + 'second string'
+    ].join('\n'));
+  });
+
+  it('should be a valid JSON with `copyable` option, and noColor', function() {
+    var input = {
+      hash: '4UFPklvxRgcCSg==',
+      Url: 'https:///update.jsp',
+      Banner: false,
+      Reason: null,
+      List: [
+        {
+          unknown: true,
+          eDesc: 'Cxxxx',
+          e: 'xxx',
+          Name: null,
+          Id: null
+        },
+        {
+          a: {
+            b: [
+              {
+                c: {
+                  j: [1,2],
+                  f: [0,1],
+                  g: ['singleItem']
+                }
+              },
+              null
+            ]
+          }
+        }
+      ],
+      ams: {
+        dec: {
+          a: 0.25,
+          b: 1.27
+        },
+        neg: {
+          a: -12,
+          b: -243.00
+        },
+        str: {
+          a: '',
+          b: 'hello world'
+        }
+      },
+      errors: [
+        'a', 'b', 'c'
+      ],
+      errorss: [0,1,2],
+      a1: {
+        a2: {
+          a3: true
+        },
+        b1: true
+      }
+    };
+    var valid = true;
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+    try {
+      JSON.parse(output);
+    } catch(e) {
+      valid = false;
+    }
+    valid.should.equal(true);
+  });
+});
+
+describe('Copyable option on (and colors off to ease the tests)' +
+', testing JSON valid when printing', function() {
+  it('three strings', function() {
+    var input = {
+      param1: 'first string', param2: 'second string', param3: 'third string'
+    };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "param1": "first string",',
+      '  "param2": "second string",',
+      '  "param3": "third string"',
+      '}'
+    ].join('\n'));
+  });
+
+  it('three numbers', function() {
+    var input = {
+      param1: 1, param2: 2, param3: 3
+    };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "param1": 1,',
+      '  "param2": 2,',
+      '  "param3": 3',
+      '}'
+    ].join('\n'));
+  });
+
+  it('three nulls', function() {
+    var input = {
+      param1: null, param2: null, param3: null
+    };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "param1": null,',
+      '  "param2": null,',
+      '  "param3": null',
+      '}'
+    ].join('\n'));
+  });
+
+  it('three booleans', function() {
+    var input = {
+      param1: true, param2: false, param3: true
+    };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "param1": true,',
+      '  "param2": false,',
+      '  "param3": true',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a string', function() {
+    var input = 'string';
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal('"string"');
+  });
+
+  it('a boolean', function() {
+    var input = false;
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal('false');
+  });
+
+  it('a number', function() {
+    var input = 1;
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal('1');
+  });
+
+  it('a singleton array of strings', function() {
+    var input = ['first string'] ;
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '[',
+      '   "first string"',
+      ']'
+    ].join('\n'));
+  });
+
+  it('an array of strings', function() {
+    var input = ['first string', 'second string', 'third string'] ;
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '[',
+      '   "first string",',
+      '   "second string",',
+      '   "third string"',
+      ']'
+    ].join('\n'));
+  });
+
+  it('an object of a singleton array', function() {
+    var input = { a: ['as'] } ;
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "a": [',
+      '     "as"',
+      '  ]',
+      '}'
+    ].join('\n'));
+  });
+
+  it('an object of a object', function() {
+    var input = { a: {a: 1} } ;
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "a": {',
+      '    "a": 1',
+      '  }',
+      '}'
+    ].join('\n'));
+  });
+
+  it('an object of an object of an object with an null', function() {
+    var input = {
+      a: {
+        a: {a: 1},
+        b: null
+      }
+    };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "a": {',
+      '    "a": {',
+      '      "a": 1',
+      '    },',
+      '    "b": null',
+      '  }',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a string and number', function() {
+    var input = {param1: 'first string', param2: 2};
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "param1": "first string",',
+      '  "param2": 2',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a array and an string', function() {
+    var input = {param1: ['second string'], param2: 'first string'};
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "param1": [',
+      '     "second string"',
+      '  ],',
+      '  "param2": "first string"',
+      '}'
+    ].join('\n'));
+  });
+
+  it('a big ass complex object', function() {
+    var input = {
+      hash: '4UFPklvxRgcCSg==',
+      Url: 'https:///update.jsp',
+      Banner: false,
+      Reason: null,
+      List: [
+        {
+          unknown: true,
+          eDesc: 'Cxxxx',
+          e: 'xxx',
+          Name: null,
+          Id: null
+        },
+        {
+          a: {
+            b: [
+              {
+                c: {
+                  j: [1,2],
+                  f: [0,1],
+                  g: ['singleItem']
+                }
+              },
+              null
+            ]
+          }
+        }
+      ],
+      ams: {
+        dec: {
+          a: 0.25,
+          b: 1.27
+        },
+        neg: {
+          a: -12,
+          b: -243.00
+        },
+        str: {
+          a: '',
+          b: 'hello world'
+        }
+      },
+      errors: [
+        'a', 'b', 'c'
+      ],
+      errorss: [0,1,2],
+      a1: {
+        a2: {
+          a3: true
+        },
+        b1: true
+      }
+    };
+    var output = prettyjson.render(input, {format: 'copyable', noColor: true});
+
+    output.should.equal([
+      '{',
+      '  "hash":    "4UFPklvxRgcCSg==",',
+      '  "Url":     "https:///update.jsp",',
+      '  "Banner":  false,',
+      '  "Reason":  null,',
+      '  "List": [',
+      '     {',
+      '      "unknown": true,',
+      '      "eDesc":   "Cxxxx",',
+      '      "e":       "xxx",',
+      '      "Name":    null,',
+      '      "Id":      null',
+      '    },',
+      '     {',
+      '      "a": {',
+      '        "b": [',
+      '           {',
+      '            "c": {',
+      '              "j": [',
+      '                 1,',
+      '                 2',
+      '              ],',
+      '              "f": [',
+      '                 0,',
+      '                 1',
+      '              ],',
+      '              "g": [',
+      '                 "singleItem"',
+      '              ]',
+      '            }',
+      '          },',
+      '           null',
+      '        ]',
+      '      }',
+      '    }',
+      '  ],',
+      '  "ams": {',
+      '    "dec": {',
+      '      "a": 0.25,',
+      '      "b": 1.27',
+      '    },',
+      '    "neg": {',
+      '      "a": -12,',
+      '      "b": -243',
+      '    },',
+      '    "str": {',
+      '      "a": "",',
+      '      "b": "hello world"',
+      '    }',
+      '  },',
+      '  "errors": [',
+      '     "a",',
+      '     "b",',
+      '     "c"',
+      '  ],',
+      '  "errorss": [',
+      '     0,',
+      '     1,',
+      '     2',
+      '  ],',
+      '  "a1": {',
+      '    "a2": {',
+      '      "a3": true',
+      '    },',
+      '    "b1": true',
+      '  }',
+      '}'
     ].join('\n'));
   });
 });

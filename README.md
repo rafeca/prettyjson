@@ -57,7 +57,16 @@ $ prettyjson --indent=4 package.json
 
 # Render arrays elements in a single line
 $ prettyjson --inline-arrays=1 package.json
+
+# Render with extra characters ({[,"]}) to be able to copy the string
+$ prettyjson --format="copyable" package.json
+
+# Render the object as a query string for mongoDB
+$ prettyjson --format="path" package.json
 ```
+
+#### Output Example for path
+![pathable](https://raw.github.com/rafeca/prettyjson/master/images/pathable.png)
 
 **Deprecation Notice**: The old configuration through environment variables is
 deprecated and it will be removed in the next major version (1.0.0).
