@@ -164,6 +164,26 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
+  it('should allow to configure colors for positive numbers', function() {
+    var input = {param1: 17, param2: -22.3};
+    var output = prettyjson.render(input, {positiveNumberColor: 'red'});
+
+    output.should.equal([
+      colors.green('param1: ') + colors.red('17'),
+      colors.green('param2: ') + colors.blue('-22.3')
+    ].join('\n'));
+  });
+
+  it('should allow to configure colors for negative numbers', function() {
+    var input = {param1: 17, param2: -22.3};
+    var output = prettyjson.render(input, {negativeNumberColor: 'red'});
+
+    output.should.equal([
+      colors.green('param1: ') + colors.blue('17'),
+      colors.green('param2: ') + colors.red('-22.3')
+    ].join('\n'));
+  });
+
   it('should allow to configure rainbow as color', function() {
     var input = {paramLong: 'first string', param2: 'second string'};
     var output = prettyjson.render(input, {keysColor: 'rainbow'});
