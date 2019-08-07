@@ -10,6 +10,7 @@ var options = {
   dashColor: argv.dash || process.env.PRETTYJSON_DASH,
   defaultIndentation: argv.indent || process.env.PRETTYJSON_INDENT,
   stringColor: argv.string || process.env.PRETTYJSON_STRING,
+  multilineStringColor: argv.multiline_string || process.env.PRETTYJSON_MULTILINE_STRING,
   numberColor: argv.number || process.env.PRETTYJSON_NUMBER,
   noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR,
   noAlign: argv['noalign'] || process.env.PRETTYJSON_NOALIGN,

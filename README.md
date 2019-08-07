@@ -47,7 +47,7 @@ It's possible to customize the output through some command line options:
 
 ```bash
 # Change colors
-$ prettyjson --string=red --keys=blue --dash=yellow --number=green package.json
+$ prettyjson --string=red --multiline_string=cyan --keys=blue --dash=yellow --number=green package.json
 
 # Do not use colors
 $ prettyjson --nocolor=1 package.json
@@ -104,7 +104,8 @@ var data = {
 console.log(prettyjson.render(data, {
   keysColor: 'rainbow',
   dashColor: 'magenta',
-  stringColor: 'white'
+  stringColor: 'white',
+  multilineStringColor: 'cyan'
 }));
 ```
 
