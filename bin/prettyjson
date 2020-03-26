@@ -11,6 +11,7 @@ var options = {
   defaultIndentation: argv.indent || process.env.PRETTYJSON_INDENT,
   stringColor: argv.string || process.env.PRETTYJSON_STRING,
   format: 'path', //argv.format || process.env.PRETTYJSON_STRING,
+  multilineStringColor: argv.multiline_string || process.env.PRETTYJSON_MULTILINE_STRING,
   numberColor: argv.number || process.env.PRETTYJSON_NUMBER,
   noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR,
   copyable: argv['copyable'] || process.env.PRETTYJSON_COPYABLE,

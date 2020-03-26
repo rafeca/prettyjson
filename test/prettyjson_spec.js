@@ -207,6 +207,20 @@ describe('prettyjson general tests', function() {
     ].join('\n'));
   });
 
+  it('should allow to configure colors for multiline strings', function() {
+    var input = 'first line string\nsecond line string';
+    var output = prettyjson.render(
+      input,
+      {multilineStringColor: 'red'}
+    );
+    output.should.equal([
+      colors.red('"""')  ,
+      '  ' + colors.red('first line string'),
+      '  ' + colors.red('second line string'),
+      colors.red('"""')
+    ].join('\n'));
+  });
+
   it('should allow to not use colors', function() {
     var input = {param1: 'first string', param2: ['second string']};
     var output = prettyjson.render(input, {noColor: true});
