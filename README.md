@@ -57,6 +57,9 @@ $ prettyjson --indent=4 package.json
 
 # Render arrays elements in a single line
 $ prettyjson --inline-arrays=1 package.json
+
+# Escape conflictive strings
+$ prettyjson --escape=1 package.json
 ```
 
 **Deprecation Notice**: The old configuration through environment variables is

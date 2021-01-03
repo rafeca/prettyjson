@@ -32,7 +32,9 @@ describe('prettyjson general tests', function() {
 
   it('should output a escaped string if have conflict chars', function () {
     var input = '#irchannel';
-    var output = prettyjson.render(input, {}, 4);
+      var output = prettyjson.render(input, {
+        escape: true,
+      }, 4);
 
     output.should.equal('    "#irchannel"');
   });
