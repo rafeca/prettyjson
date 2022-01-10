@@ -16,6 +16,7 @@ var options = {
   negativeNumberColor: argv.number || process.env.PRETTYJSON_NUMBER_NEGATIVE,
   noColor: argv['nocolor'] || process.env.PRETTYJSON_NOCOLOR,
   noAlign: argv['noalign'] || process.env.PRETTYJSON_NOALIGN,
+  escape: argv['escape'] || process.env.PRETTYJSON_ESCAPE,
   inlineArrays: argv['inline-arrays'] || process.env.PRETTYJSON_INLINE_ARRAYS
 };
 
