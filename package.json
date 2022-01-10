@@ -31,7 +31,7 @@
     "prettyjson": "./bin/prettyjson"
   },
   "dependencies": {
-    "colors": "^1.1.2",
+    "colors": "1.4.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
