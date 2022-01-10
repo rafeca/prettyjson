@@ -292,6 +292,29 @@ describe('Printing numbers, booleans and other objects', function() {
     output.should.equal('    ' + colors.grey('null'));
   });
 
+  it('should print a undefined object correctly ', function() {
+    var input;
+    var output = prettyjson.render(input, {}, 4);
+
+    output.should.equal('    ' + colors.grey('undefined'));
+  });
+
+  it('should print undefined keys ', function() {
+    var input = {
+      foo: undefined,
+      bar: [1, undefined, 2],
+    };
+    var output = prettyjson.render(input, {}, 4);
+
+    output.should.equal(([
+      '    ' + colors.green('foo: ') + colors.grey('undefined'),
+      '    ' + colors.green('bar: '),
+      '      ' + colors.green('- ') + colors.blue(1),
+      '      ' + colors.green('- ') + colors.grey('undefined'),
+      '      ' + colors.green('- ') + colors.blue(2)
+    ].join('\n')));
+  });
+
   it('should print an Error correctly ', function() {
     Error.stackTraceLimit = 1;
     var input = new Error('foo');
