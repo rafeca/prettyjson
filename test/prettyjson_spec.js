@@ -321,19 +321,38 @@ describe('Printing numbers, booleans and other objects', function() {
     output.should.equal('    ' + colors.grey('null'));
   });
 
-  it('should print a undefined object correctly ', function() {
-    var input;
-    var output = prettyjson.render(input, {}, 4);
+  it('should ignore undefined input ', function() {
+    var output = prettyjson.render(undefined, {}, 4);
+
+    output.should.equal('');
+  });
+
+  it('should print undefined with renderUndefined option  ', function() {
+    var output = prettyjson.render(undefined, {renderUndefined: true}, 4);
 
     output.should.equal('    ' + colors.grey('undefined'));
   });
 
-  it('should print undefined keys ', function() {
+  it('should ignore undefined values ', function() {
     var input = {
       foo: undefined,
       bar: [1, undefined, 2],
     };
     var output = prettyjson.render(input, {}, 4);
+
+    output.should.equal(([
+      '    ' + colors.green('bar: '),
+      '      ' + colors.green('- ') + colors.blue(1),
+      '      ' + colors.green('- ') + colors.blue(2)
+    ].join('\n')));
+  });
+
+  it('should print undefined keys with renderUndefined option ', function() {
+    var input = {
+      foo: undefined,
+      bar: [1, undefined, 2],
+    };
+    var output = prettyjson.render(input, {renderUndefined: true}, 4);
 
     output.should.equal(([
       '    ' + colors.green('foo: ') + colors.grey('undefined'),
