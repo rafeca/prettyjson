@@ -2,7 +2,7 @@
 
 var prettyjson = require('../lib/prettyjson');
 var fs = require('fs');
-var colors = require('colors/safe');
+var colors = require('@colors/colors/safe');
 var argv = require('minimist')(process.argv.slice(2));
 
 var options = {

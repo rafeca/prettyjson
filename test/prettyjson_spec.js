@@ -5,7 +5,7 @@ var prettyjson = process.env.EXPRESS_COV
   ? require('../lib-cov/prettyjson')
   : require('../lib/prettyjson');
 
-var colors = require('colors/safe');
+var colors = require('@colors/colors/safe');
 
 describe('prettyjson general tests', function() {
 
