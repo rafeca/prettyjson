@@ -42,7 +42,7 @@
     "coveralls": "^2.11.15",
     "istanbul": "^0.4.5",
     "jshint": "^2.9.4",
-    "mocha": "^3.1.2",
+    "mocha": "^10.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "should": "^11.1.1"
   }
